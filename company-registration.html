@@ -1,0 +1,565 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>company-registration</title>
+    <style type="text/css">
+      .tech-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+      .tech-container section {
+        margin-bottom: 50px;
+      }
+      .tech-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tech-separator-col {
+        width: 20px;
+        height: 20px;
+      }
+      .tech-separator-row {
+        width: 100%;
+        height: 20px;
+      }
+      .tech-separator-hr {
+        border: 1px solid #959595;
+      }
+      .tech-w-100p {
+        width: 100%;
+      }
+      .tech-w-300 {
+        width: 300px;
+      }
+      .tech-h-100vh {
+        height: 100vh;
+      }
+      .sitemap-panel {
+        position: fixed;
+        z-index: 9999999;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 24px 32px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transform: translate(0, 40px);
+        transition: 0.4s ease-out;
+        background-color: #20202B;
+      }
+      .sitemap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-width: 640px;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 0 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transition: 0.4s ease-out;
+      }
+      .sitemap-panel:hover,
+      .sitemap_shown {
+        transform: translate(0, 0);
+      }
+      .sitemap_shown {
+        height: 100%;
+      }
+      .sitemap_shown .sitemap__list {
+        display: flex;
+      }
+      .sitemap__list {
+        display: none;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+      .sitemap__link {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        color: inherit;
+        text-decoration: none;
+        transition: 0.4s ease-out;
+      }
+      .sitemap__link:hover {
+        opacity: 0.5;
+      }
+      .sitemap__stack {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script defer src="js/lib/vendors.js"></script>
+    <script defer src="js/main.js"></script>
+    <link href="css/lib/vendors.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sitemap-panel">
+      <div class="sitemap" data-component="sitemap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">sitemap</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="index.html">index</a><a class="sitemap__link"
+            href="signIn.html">signIn</a><a class="sitemap__link" href="signUp.html">signUp/step-1</a><a
+            class="sitemap__link" href="signUp-verification.html">signUp/step-2</a><a class="sitemap__link"
+            href="company-registration.html">company-registration</a><a class="sitemap__link"
+            href="password-restore-by-tel.html">signIn/password-restore/step-1/mobile</a><a class="sitemap__link"
+            href="password-restore-by-email.html">signIn/password-restore/step-1/email</a><a class="sitemap__link"
+            href="password-restore-code.html">signIn/password-restore/step-2</a><a class="sitemap__link"
+            href="password-restore-final.html">signIn/password-restore/step-3</a><a class="sitemap__link"
+            href="account.html">Account</a><a class="sitemap__link" href="account-seller.html">Account. Seller</a><a
+            class="sitemap__link" href="account-list.html">Account. List</a><a class="sitemap__link"
+            href="faq.html">Faq</a><a class="sitemap__link" href="chat-support.html">Chat. Support </a><a
+            class="sitemap__link" href="deals.html">Deals</a><a class="sitemap__link" href="deals-view-row.html">Deals.
+            Row </a><a class="sitemap__link" href="buyers.html">Buyers</a><a class="sitemap__link"
+            href="buyer-marketplace.html">Buyer. Marketplace </a><a class="sitemap__link"
+            href="buyer-marketplace-view-row.html">Buyer. Marketplace. Row</a><a class="sitemap__link"
+            href="product-buyer.html">Buyer. Product</a><a class="sitemap__link" href="buyer-request-choise.html">Buyer.
+            Request. Choise</a><a class="sitemap__link" href="buyer-request-canceled.html">Buyer. Request.
+            Canceled</a><a class="sitemap__link" href="buyer-request-success.html">Buyer. Request. Success</a><a
+            class="sitemap__link" href="buyer-request-closed.html">Buyer. Request. Closed</a><a class="sitemap__link"
+            href="buyer-request-sold.html">Buyer. Request. Sold</a><a class="sitemap__link"
+            href="product-manager.html">Manager. Product</a><a class="sitemap__link" href="manager-deal.html">Manager.
+            Deal </a><a class="sitemap__link" href="manager-deal-choise.html">Manager. Deal. Choise</a><a
+            class="sitemap__link" href="manager-deal-canceled.html">Manager. Deal. Canceled</a><a class="sitemap__link"
+            href="manager-deal-closed.html">Manager. Deal. Closed</a><a class="sitemap__link"
+            href="manager-deal-sold.html">Manager. Deal. Sold</a><a class="sitemap__link"
+            href="manager-product.html">Manager. Product </a><a class="sitemap__link"
+            href="manager-product-empty.html">Manager. Product. Empty</a><a class="sitemap__link"
+            href="requests-list.html">Request. List</a><a class="sitemap__link"
+            href="requests-list-buyers.html">Request. List. Buyers</a><a class="sitemap__link"
+            href="requests-list-offers.html">Request. List. Offers</a><a class="sitemap__link"
+            href="requests-edit.html">Request. Edit</a><a class="sitemap__link" href="requests-new.html">Request.
+            New</a><a class="sitemap__link" href="requests-statistics.html">Request. Statistics</a><a
+            class="sitemap__link" href="product-seller.html">Seller. Product</a><a class="sitemap__link"
+            href="seller-inventory.html">Seller. Inventory</a><a class="sitemap__link"
+            href="seller-chat-empty.html">Seller. Chat. Empty</a><a class="sitemap__link"
+            href="seller-chat-choise.html">Seller. Chat. Choise</a><a class="sitemap__link"
+            href="seller-chat-accepted.html">Seller. Chat. Accepted</a><a class="sitemap__link"
+            href="seller-chat-denied.html">Seller. Chat. Denied</a><a class="sitemap__link"
+            href="seller-deals-invoice.html">Seller. Deal. Invoice</a><a class="sitemap__link"
+            href="seller-deals-packing-confirm.html">Seller. Deal. Packing. Confirm</a><a class="sitemap__link"
+            href="seller-deals-packed.html">Seller. Deal. Packed</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirm.html">Seller. Deal. Delivery. Confirm</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirmed.html">Seller. Deal. Delivery. Confirmed</a><a class="sitemap__link"
+            href="seller-deals-money-received.html">Seller. Deal. Money received</a><a class="sitemap__link"
+            href="seller-deals-sold.html">Seller. Deal. Sold</a></div>
+      </div>
+      <div class="sitemap" data-component="componentsmap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">components</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="components-buttons.html">buttons</a><a
+            class="sitemap__link" href="components-fields.html">fields</a><a class="sitemap__link"
+            href="components-modals.html">modals</a><a class="sitemap__link" href="components-nav.html">navigation</a><a
+            class="sitemap__link" href="components-filter.html">filter</a><a class="sitemap__link"
+            href="components-deal.html">deal</a><a class="sitemap__link" href="components-product.html">product</a><a
+            class="sitemap__link" href="components-chat.html">Chat</a></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="sitemap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="componentsmap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <main class="p-dashboard">
+      <div class="p-dashboard__sidebar">
+        <div class="sidebar" data-component="sidebar">
+          <div class="sidebar__top"><a class="sidebar__logo sidebar__logo_type_default" href="index.html"></a><a
+              class="sidebar__logo sidebar__logo_type_compact" href="index.html"></a><button
+              class="sidebar__view-toggler" type="button" data-node="view-toggler"><span
+                class="sidebar__view-toggler-icon"><svg class="sidebar__view-toggler-svg">
+                  <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+                </svg></span></button></div><button class="button sidebar__request-btn button_theme_shiny-dark"><span
+              class="button__inner"><span class="button__icon button__icon_type_symbol button__icon_pos_before"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#addRound"></use>
+                </svg></span><span class="button__title">Add Request</span></span></button>
+          <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+              <li class="sidebar__item sidebar__item_active"><a class="sidebar__link" href="#"><span
+                    class="sidebar__icon"><svg class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#leaf"></use>
+                    </svg></span><span class="sidebar__title">Marketplace</span><span
+                    class="sidebar__count">(1235)</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><span
+                          class="sidebar__icon-point"></span><svg class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#deal"></use>
+                        </svg></span><span class="sidebar__title">My Deals</span><span
+                        class="sidebar__toggler-icon"><svg class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(100)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#invoices"></use>
+                    </svg></span><span class="sidebar__title">Orders</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><svg
+                          class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">My Requests</span><span
+                        class="sidebar__count">(123)</span><span class="sidebar__toggler-icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(123)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                        </svg></span><span class="sidebar__title">Week</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                        </svg></span><span class="sidebar__title">Month</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#settings"></use>
+                    </svg></span><span class="sidebar__title">Settings</span></a></li>
+            </ul>
+          </nav>
+          <div class="sidebar__suggestion">
+            <div class="sidebar__suggestion-box">
+              <picture class="sidebar__suggestion-pic">
+                <source srcset="assets/media/temp/adv.webp"><img class="sidebar__suggestion-img"
+                  src="assets/media/temp/adv.jpg" alt="" loading="lazy" decoding="async" width="200" height="200">
+              </picture>
+              <h2 class="sidebar__suggestion-title">Some Text For Advertisement</h2>
+              <p class="sidebar__suggestion-text">Connect to the large community of buyers as we bring them directly to
+                your cultivation facility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-dashboard__content p-dashboard__content_type_register">
+        <div class="p-dashboard__topbar">
+          <div class="topbar" data-component="topbar"><a class="topbar__balance" href="#">
+              <div class="topbar__balance-inner"><span class="topbar__balance-label">Balance:</span><span
+                  class="topbar__balance-value">$ 3567.67 </span></div>
+            </a>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link" href="#">Support</a></div>
+            </div>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#help"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#basket"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="favorite"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#favorite"> </use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><button class="topbar__link topbar__link_type_icon" type="button"
+                  title="search"><span class="topbar__icon-wrapper"><svg class="topbar__icon">
+                      <use xlink:href="assets/sprites/icons.svg#search"> </use>
+                    </svg></span></button></div>
+              <div class="topbar__item topbar__item_has_drop" data-dropdown="component"><button
+                  class="topbar__link topbar__link_type_icon" type="button" title="notifications"
+                  data-dropdown="toggler"><span class="topbar__icon-wrapper"><span
+                      class="topbar__icon-point"></span><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#notification"> </use>
+                    </svg></span></button>
+                <div class="dropdown topbar__dropdown" data-dropdown="dropdown">
+                  <div class="notifications-list topbar__dropdown-inner">
+                    <div class="notifications-list__header">
+                      <div class="notifications-list__title">Notifications:</div><button
+                        class="notifications-list__button" type="button">Mark all as read</button>
+                    </div>
+                    <div class="notifications-list__items"><a class="notifications-card notifications-list__item _green"
+                        href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                            <div class="notifications-card__link">Go to </div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-tools topbar__profile" data-dropdown="component">
+                <div class="topbar__profile-toggler" role="button" data-dropdown="toggler">
+                  <div class="user-bio user-bio_size_md topbar__user-bio"><img class="user-bio__pic"
+                      src="assets/media/temp/user.jpg" alt=""></div><svg class="topbar__profile-icon">
+                    <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                  </svg>
+                </div>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#profile"></use>
+                      </svg><span class="menu-tools__link-title">My Profile</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#logout"></use>
+                      </svg><span class="menu-tools__link-title">Log Out </span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-dashboard__welcome">
+          <div class="p-dashboard__welcome-title">Hi, John Doe Name Extra, you are almost done! </div>
+          <div class="p-dashboard__welcome-text">Finish your registration by filling missing information</div>
+        </div>
+        <form class="form p-dashboard__form" action="">
+          <div class="p-dashboard__form-overlay">
+            <div class="form__sections">
+              <div class="form__section">
+                <div class="form__section-title">API Key</div><label class="field _processing page-field"
+                  data-field="component"><input class="field__input" type="text" value="trtrtrtrtrtrttrtrrt"><span
+                    class="field__state field__state_align_center"><span class="field__state-main"><span
+                        class="field__state-icon"></span><span class="field__state-text">pending
+                        state</span></span></span><span class="field__title field__title_type_float">Api Metrc
+                    Key</span></label>
+              </div>
+              <div class="form__section">
+                <div class="form__section-title">Company Address</div>
+                <div class="form__section-stack">
+                  <div class="form__row">
+                    <div class="form__col page-field">
+                      <div class="select select_type_fast" data-component="select" data-title="Choose your state*"
+                        data-type="fast"><select class="_v-hidden">
+                          <option value="Alaska" data-id="ss0" data-title="Alaska"
+                            data-icon="assets/media/flags/ak.svg"></option>
+                          <option value="Arizona" data-id="ss1" data-title="Arizona"
+                            data-icon="assets/media/flags/az.svg"></option>
+                          <option value="Arkansas" data-id="ss2" data-title="Arkansas"
+                            data-icon="assets/media/flags/ark.svg"></option>
+                          <option value="California" data-id="ss3" data-title="California"
+                            data-icon="assets/media/flags/ca.svg"></option>
+                          <option value="Colorado" data-id="ss4" data-title="Colorado"
+                            data-icon="assets/media/flags/co.svg"></option>
+                          <option value="Connecticut" data-id="ss5" data-title="Connecticut"
+                            data-icon="assets/media/flags/cn.svg"></option>
+                          <option value="Delaware" data-id="ss6" data-title="Delaware"
+                            data-icon="assets/media/flags/de.svg"></option>
+                          <option value="District of Columbia" data-id="ss7" data-title="District of Columbia"
+                            data-icon="assets/media/flags/dc.svg"></option>
+                          <option value="Florida" data-id="ss8" data-title="Florida"
+                            data-icon="assets/media/flags/fl.svg"></option>
+                          <option value="Hawaii" data-id="ss9" data-title="Hawaii"
+                            data-icon="assets/media/flags/hi.svg"></option>
+                          <option value="Illinois" data-id="ss10" data-title="Illinois"
+                            data-icon="assets/media/flags/il.svg"></option>
+                          <option value="Louisiana" data-id="ss11" data-title="Louisiana"
+                            data-icon="assets/media/flags/la.svg"></option>
+                          <option value="Maine" data-id="ss12" data-title="Maine" data-icon="assets/media/flags/me.svg">
+                          </option>
+                          <option value="Maryland" data-id="ss13" data-title="Maryland"
+                            data-icon="assets/media/flags/md.svg"></option>
+                          <option value="Massachusetts" data-id="ss14" data-title="Massachusetts"
+                            data-icon="assets/media/flags/ma.svg"></option>
+                          <option value="Michigan" data-id="ss15" data-title="Michigan"
+                            data-icon="assets/media/flags/mi.svg"></option>
+                          <option value="Minnesota" data-id="ss16" data-title="Minnesota"
+                            data-icon="assets/media/flags/mn.svg"></option>
+                          <option value="Mississippi" data-id="ss17" data-title="Mississippi"
+                            data-icon="assets/media/flags/ms.svg"></option>
+                          <option value="Missouri" data-id="ss18" data-title="Missouri"
+                            data-icon="assets/media/flags/mo.svg"></option>
+                          <option value="Montana" data-id="ss19" data-title="Montana"
+                            data-icon="assets/media/flags/mt.svg"></option>
+                          <option value="Nevada" data-id="ss20" data-title="Nevada"
+                            data-icon="assets/media/flags/nv.svg"></option>
+                          <option value="New Hampshire" data-id="ss21" data-title="New Hampshire"
+                            data-icon="assets/media/flags/nh.svg"></option>
+                          <option value="New Jersey" data-id="ss22" data-title="New Jersey"
+                            data-icon="assets/media/flags/nj.svg"></option>
+                          <option value="New Mexico" data-id="ss23" data-title="New Mexico"
+                            data-icon="assets/media/flags/nm.svg"></option>
+                          <option value="New York" data-id="ss24" data-title="New York"
+                            data-icon="assets/media/flags/ny.svg"></option>
+                          <option value="North Dakota" data-id="ss25" data-title="North Dakota"
+                            data-icon="assets/media/flags/nd.svg"></option>
+                          <option value="Ohio" data-id="ss26" data-title="Ohio" data-icon="assets/media/flags/oh.svg">
+                          </option>
+                          <option value="Oklahoma" data-id="ss27" data-title="Oklahoma"
+                            data-icon="assets/media/flags/ok.svg"></option>
+                          <option value="Oregon" data-id="ss28" data-title="Oregon"
+                            data-icon="assets/media/flags/or.svg"></option>
+                          <option value="Pennsylvania" data-id="ss29" data-title="Pennsylvania"
+                            data-icon="assets/media/flags/pa.svg"></option>
+                          <option value="Rhode Island" data-id="ss30" data-title="Rhode Island"
+                            data-icon="assets/media/flags/ri.svg"></option>
+                          <option value="South Carolina" data-id="ss31" data-title="South Carolina"
+                            data-icon="assets/media/flags/sc.svg"></option>
+                          <option value="Utah" data-id="ss32" data-title="Utah" data-icon="assets/media/flags/ut.svg">
+                          </option>
+                          <option value="Vermont" data-id="ss33" data-title="Vermont"
+                            data-icon="assets/media/flags/vt.svg"></option>
+                          <option value="Virginia" data-id="ss34" data-title="Virginia"
+                            data-icon="assets/media/flags/vg.svg"></option>
+                          <option value="Washington" data-id="ss35" data-title="Washington"
+                            data-icon="assets/media/flags/vg.svg"></option>
+                          <option value="West Virginia" data-id="ss36" data-title="West Virginia"
+                            data-icon="assets/media/flags/vg.svg"></option>
+                        </select></div>
+                    </div>
+                    <div class="form__col"><label class="field page-field" data-field="component"><input
+                          class="field__input" type="text"><span class="field__title field__title_type_float">ZIP
+                          Code*</span></label></div>
+                  </div>
+                  <div class="form__row">
+                    <div class="form__col"><label class="field page-field" data-field="component"><input
+                          class="field__input" type="text"><span
+                          class="field__title field__title_type_float">Address*</span></label></div>
+                    <div class="form__col"><label class="field page-field" data-field="component"><input
+                          class="field__input" type="text"><span class="field__title field__title_type_float">Corporate
+                          E-mail*</span></label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__section">
+                <div class="form__section-title">License information</div>
+                <div class="form__section-stack">
+                  <div class="form__row">
+                    <div class="form__col"><label class="field page-field" data-field="component"><input
+                          class="field__input" type="text"><span class="field__title field__title_type_float">License
+                          Number*</span></label></div>
+                  </div>
+                  <div class="form__row">
+                    <div class="form__col page-field">
+                      <div class="select" data-component="select" data-title="Type*"><select class="_v-hidden">
+                          <option value="Cultivator" data-id="ss0" data-title="Cultivator"
+                            data-icon="assets/media/userTypes/cv.svg"></option>
+                          <option value="Distributor" data-id="ss1" data-title="Distributor"
+                            data-icon="assets/media/userTypes/ds.svg"></option>
+                          <option value="Transporter" data-id="ss2" data-title="Transporter"
+                            data-icon="assets/media/userTypes/ts.svg"></option>
+                          <option value="Manufacturer" data-id="ss3" data-title="Manufacturer"
+                            data-icon="assets/media/userTypes/mf.svg"></option>
+                          <option value="Shorefront Retailer" data-id="ss4" data-title="Shorefront Retailer"
+                            data-icon="assets/media/userTypes/sr.svg"></option>
+                          <option value="Delivery Service" data-id="ss5" data-title="Delivery Service"
+                            data-icon="assets/media/userTypes/dls.svg"></option>
+                          <option value="Cannabis Event Organizer" data-id="ss6" data-title="Cannabis Event Organizer"
+                            data-icon="assets/media/userTypes/org.svg"></option>
+                        </select></div>
+                    </div>
+                    <div class="form__col page-field">
+                      <div class="select" data-component="select" data-title="Designation*"><select class="_v-hidden">
+                          <option value="Medical" data-id="ss0" data-title="Medical"
+                            data-icon="assets/media/flags/ak.svg"></option>
+                          <option value="Adult Use" data-id="ss1" data-title="Adult Use"
+                            data-icon="assets/media/flags/ak.svg"></option>
+                          <option value="Other" data-id="ss2" data-title="Other" data-icon="assets/media/flags/ak.svg">
+                          </option>
+                          <option value="Hemp" data-id="ss3" data-title="Hemp" data-icon="assets/media/flags/ak.svg">
+                          </option>
+                        </select></div>
+                    </div>
+                  </div>
+                  <div class="form__row">
+                    <div class="form__col"><label class="field _filled field_has-icon-after cDatepicker"><input
+                          class="field__input" type="text" inputmode="none" readonly placeholder="mm.dd.yyyy"
+                          data-datepicker="component"><span class="field__title field__title_type_float">Issue
+                          Date</span><span class="field__icon field__icon_type_symbol"><svg class="field__icon-svg">
+                            <use xlink:href="assets/sprites/icons.svg#calendar"></use>
+                          </svg></span></label></div>
+                    <div class="form__col"><label class="field _filled field_has-icon-after cDatepicker"><input
+                          class="field__input" type="text" inputmode="none" readonly placeholder="mm.dd.yyyy"
+                          data-datepicker="component"><span class="field__title field__title_type_float">Expirational
+                          Date</span><span class="field__icon field__icon_type_symbol"><svg class="field__icon-svg">
+                            <use xlink:href="assets/sprites/icons.svg#calendar"></use>
+                          </svg></span></label></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-dashboard__form-submit"><button class="button form__submit button_theme_shiny" disabled
+              type="submit"><span class="button__inner"><span class="button__title">Submit xxx</span></span></button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

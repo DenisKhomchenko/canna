@@ -1,0 +1,799 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request. Buyers list</title>
+    <style type="text/css">
+      .tech-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+      .tech-container section {
+        margin-bottom: 50px;
+      }
+      .tech-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tech-separator-col {
+        width: 20px;
+        height: 20px;
+      }
+      .tech-separator-row {
+        width: 100%;
+        height: 20px;
+      }
+      .tech-separator-hr {
+        border: 1px solid #959595;
+      }
+      .tech-w-100p {
+        width: 100%;
+      }
+      .tech-w-300 {
+        width: 300px;
+      }
+      .tech-h-100vh {
+        height: 100vh;
+      }
+      .sitemap-panel {
+        position: fixed;
+        z-index: 9999999;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 24px 32px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transform: translate(0, 40px);
+        transition: 0.4s ease-out;
+        background-color: #20202B;
+      }
+      .sitemap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-width: 640px;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 0 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transition: 0.4s ease-out;
+      }
+      .sitemap-panel:hover,
+      .sitemap_shown {
+        transform: translate(0, 0);
+      }
+      .sitemap_shown {
+        height: 100%;
+      }
+      .sitemap_shown .sitemap__list {
+        display: flex;
+      }
+      .sitemap__list {
+        display: none;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+      .sitemap__link {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        color: inherit;
+        text-decoration: none;
+        transition: 0.4s ease-out;
+      }
+      .sitemap__link:hover {
+        opacity: 0.5;
+      }
+      .sitemap__stack {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script defer src="js/lib/vendors.js"></script>
+    <script defer src="js/main.js"></script>
+    <link href="css/lib/vendors.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sitemap-panel">
+      <div class="sitemap" data-component="sitemap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">sitemap</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="index.html">index</a><a class="sitemap__link"
+            href="signIn.html">signIn</a><a class="sitemap__link" href="signUp.html">signUp/step-1</a><a
+            class="sitemap__link" href="signUp-verification.html">signUp/step-2</a><a class="sitemap__link"
+            href="company-registration.html">company-registration</a><a class="sitemap__link"
+            href="password-restore-by-tel.html">signIn/password-restore/step-1/mobile</a><a class="sitemap__link"
+            href="password-restore-by-email.html">signIn/password-restore/step-1/email</a><a class="sitemap__link"
+            href="password-restore-code.html">signIn/password-restore/step-2</a><a class="sitemap__link"
+            href="password-restore-final.html">signIn/password-restore/step-3</a><a class="sitemap__link"
+            href="account.html">Account</a><a class="sitemap__link" href="account-seller.html">Account. Seller</a><a
+            class="sitemap__link" href="account-list.html">Account. List</a><a class="sitemap__link"
+            href="faq.html">Faq</a><a class="sitemap__link" href="chat-support.html">Chat. Support </a><a
+            class="sitemap__link" href="deals.html">Deals</a><a class="sitemap__link" href="deals-view-row.html">Deals.
+            Row </a><a class="sitemap__link" href="buyers.html">Buyers</a><a class="sitemap__link"
+            href="buyer-marketplace.html">Buyer. Marketplace </a><a class="sitemap__link"
+            href="buyer-marketplace-view-row.html">Buyer. Marketplace. Row</a><a class="sitemap__link"
+            href="product-buyer.html">Buyer. Product</a><a class="sitemap__link" href="buyer-request-choise.html">Buyer.
+            Request. Choise</a><a class="sitemap__link" href="buyer-request-canceled.html">Buyer. Request.
+            Canceled</a><a class="sitemap__link" href="buyer-request-success.html">Buyer. Request. Success</a><a
+            class="sitemap__link" href="buyer-request-closed.html">Buyer. Request. Closed</a><a class="sitemap__link"
+            href="buyer-request-sold.html">Buyer. Request. Sold</a><a class="sitemap__link"
+            href="product-manager.html">Manager. Product</a><a class="sitemap__link" href="manager-deal.html">Manager.
+            Deal </a><a class="sitemap__link" href="manager-deal-choise.html">Manager. Deal. Choise</a><a
+            class="sitemap__link" href="manager-deal-canceled.html">Manager. Deal. Canceled</a><a class="sitemap__link"
+            href="manager-deal-closed.html">Manager. Deal. Closed</a><a class="sitemap__link"
+            href="manager-deal-sold.html">Manager. Deal. Sold</a><a class="sitemap__link"
+            href="manager-product.html">Manager. Product </a><a class="sitemap__link"
+            href="manager-product-empty.html">Manager. Product. Empty</a><a class="sitemap__link"
+            href="requests-list.html">Request. List</a><a class="sitemap__link"
+            href="requests-list-buyers.html">Request. List. Buyers</a><a class="sitemap__link"
+            href="requests-list-offers.html">Request. List. Offers</a><a class="sitemap__link"
+            href="requests-edit.html">Request. Edit</a><a class="sitemap__link" href="requests-new.html">Request.
+            New</a><a class="sitemap__link" href="requests-statistics.html">Request. Statistics</a><a
+            class="sitemap__link" href="product-seller.html">Seller. Product</a><a class="sitemap__link"
+            href="seller-inventory.html">Seller. Inventory</a><a class="sitemap__link"
+            href="seller-chat-empty.html">Seller. Chat. Empty</a><a class="sitemap__link"
+            href="seller-chat-choise.html">Seller. Chat. Choise</a><a class="sitemap__link"
+            href="seller-chat-accepted.html">Seller. Chat. Accepted</a><a class="sitemap__link"
+            href="seller-chat-denied.html">Seller. Chat. Denied</a><a class="sitemap__link"
+            href="seller-deals-invoice.html">Seller. Deal. Invoice</a><a class="sitemap__link"
+            href="seller-deals-packing-confirm.html">Seller. Deal. Packing. Confirm</a><a class="sitemap__link"
+            href="seller-deals-packed.html">Seller. Deal. Packed</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirm.html">Seller. Deal. Delivery. Confirm</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirmed.html">Seller. Deal. Delivery. Confirmed</a><a class="sitemap__link"
+            href="seller-deals-money-received.html">Seller. Deal. Money received</a><a class="sitemap__link"
+            href="seller-deals-sold.html">Seller. Deal. Sold</a></div>
+      </div>
+      <div class="sitemap" data-component="componentsmap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">components</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="components-buttons.html">buttons</a><a
+            class="sitemap__link" href="components-fields.html">fields</a><a class="sitemap__link"
+            href="components-modals.html">modals</a><a class="sitemap__link" href="components-nav.html">navigation</a><a
+            class="sitemap__link" href="components-filter.html">filter</a><a class="sitemap__link"
+            href="components-deal.html">deal</a><a class="sitemap__link" href="components-product.html">product</a><a
+            class="sitemap__link" href="components-chat.html">Chat</a></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="sitemap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="componentsmap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <main class="p-dashboard">
+      <div class="p-dashboard__sidebar">
+        <div class="sidebar" data-component="sidebar">
+          <div class="sidebar__top"><a class="sidebar__logo sidebar__logo_type_default" href="index.html"></a><a
+              class="sidebar__logo sidebar__logo_type_compact" href="index.html"></a><button
+              class="sidebar__view-toggler" type="button" data-node="view-toggler"><span
+                class="sidebar__view-toggler-icon"><svg class="sidebar__view-toggler-svg">
+                  <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+                </svg></span></button></div><button class="button sidebar__request-btn button_theme_shiny-dark"><span
+              class="button__inner"><span class="button__icon button__icon_type_symbol button__icon_pos_before"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#addRound"></use>
+                </svg></span><span class="button__title">Add Request</span></span></button>
+          <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+              <li class="sidebar__item sidebar__item_active"><a class="sidebar__link" href="#"><span
+                    class="sidebar__icon"><svg class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#leaf"></use>
+                    </svg></span><span class="sidebar__title">Marketplace</span><span
+                    class="sidebar__count">(1235)</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><span
+                          class="sidebar__icon-point"></span><svg class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#deal"></use>
+                        </svg></span><span class="sidebar__title">My Deals</span><span
+                        class="sidebar__toggler-icon"><svg class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(100)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#invoices"></use>
+                    </svg></span><span class="sidebar__title">Orders</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><svg
+                          class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">My Requests</span><span
+                        class="sidebar__count">(123)</span><span class="sidebar__toggler-icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(123)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                        </svg></span><span class="sidebar__title">Week</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                        </svg></span><span class="sidebar__title">Month</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#settings"></use>
+                    </svg></span><span class="sidebar__title">Settings</span></a></li>
+            </ul>
+          </nav>
+          <div class="sidebar__suggestion">
+            <div class="sidebar__suggestion-box">
+              <picture class="sidebar__suggestion-pic">
+                <source srcset="assets/media/temp/adv.webp"><img class="sidebar__suggestion-img"
+                  src="assets/media/temp/adv.jpg" alt="" loading="lazy" decoding="async" width="200" height="200">
+              </picture>
+              <h2 class="sidebar__suggestion-title">Some Text For Advertisement</h2>
+              <p class="sidebar__suggestion-text">Connect to the large community of buyers as we bring them directly to
+                your cultivation facility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-dashboard__content p-dashboard__content_type_product">
+        <div class="p-dashboard__topbar">
+          <div class="topbar" data-component="topbar"><a class="topbar__balance" href="#">
+              <div class="topbar__balance-inner"><span class="topbar__balance-label">Balance:</span><span
+                  class="topbar__balance-value">$ 3567.67 </span></div>
+            </a>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link" href="#">Support</a></div>
+            </div>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#help"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#basket"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="favorite"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#favorite"> </use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><button class="topbar__link topbar__link_type_icon" type="button"
+                  title="search"><span class="topbar__icon-wrapper"><svg class="topbar__icon">
+                      <use xlink:href="assets/sprites/icons.svg#search"> </use>
+                    </svg></span></button></div>
+              <div class="topbar__item topbar__item_has_drop" data-dropdown="component"><button
+                  class="topbar__link topbar__link_type_icon" type="button" title="notifications"
+                  data-dropdown="toggler"><span class="topbar__icon-wrapper"><span
+                      class="topbar__icon-point"></span><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#notification"> </use>
+                    </svg></span></button>
+                <div class="dropdown topbar__dropdown" data-dropdown="dropdown">
+                  <div class="notifications-list topbar__dropdown-inner">
+                    <div class="notifications-list__header">
+                      <div class="notifications-list__title">Notifications:</div><button
+                        class="notifications-list__button" type="button">Mark all as read</button>
+                    </div>
+                    <div class="notifications-list__items"><a class="notifications-card notifications-list__item _green"
+                        href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                            <div class="notifications-card__link">Go to </div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-tools topbar__profile" data-dropdown="component">
+                <div class="topbar__profile-toggler" role="button" data-dropdown="toggler">
+                  <div class="user-bio user-bio_size_md topbar__user-bio"><img class="user-bio__pic"
+                      src="assets/media/temp/user.jpg" alt=""></div><svg class="topbar__profile-icon">
+                    <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                  </svg>
+                </div>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#profile"></use>
+                      </svg><span class="menu-tools__link-title">My Profile</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#logout"></use>
+                      </svg><span class="menu-tools__link-title">Log Out </span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="breadcrumbs p-dashboard__breadcrumbs">
+          <ul class="breadcrumbs__list" itemprop="http://schema.org/breadcrumb" itemscope=""
+            itemtype="http://schema.org/BreadcrumbList">
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><a class="breadcrumbs__link" href="#" title=""
+                itemprop="item"><span class="breadcrumbs__title" itemprop="name">Buyers Requests</span></a>
+              <meta itemprop="position" content="2">
+            </li>
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><a class="breadcrumbs__link" href="#" title=""
+                itemprop="item"><span class="breadcrumbs__title" itemprop="name">Buyers List</span></a>
+              <meta itemprop="position" content="3">
+            </li>
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><a class="breadcrumbs__link" href="#" title=""
+                itemprop="item"><span class="breadcrumbs__title" itemprop="name">Antonio Montana</span></a>
+              <meta itemprop="position" content="4">
+            </li>
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><span class="breadcrumbs__link" title="" itemprop="item"><span
+                  class="breadcrumbs__title" itemprop="name"># 32429784</span></span>
+              <meta itemprop="position" content="5">
+            </li>
+          </ul>
+        </div><a class="button page-goback p-dashboard__goback" href="#"><span class="button__inner"><span
+              class="button__icon button__icon_type_symbol button__icon_pos_before"><svg class="button__icon-svg">
+                <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+              </svg></span><span class="button__title">Go Back</span></span></a>
+        <form class="request">
+          <div class="request__header">
+            <h1 class="request__title">Buyers List</h1>
+            <div class="menu-tools" data-dropdown="component"><button
+                class="button menu-tools__toggler button_theme_neon" type="button" data-dropdown="toggler"><span
+                  class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                      class="button__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#filter"></use>
+                    </svg></span></span></button>
+              <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                <div class="menu-tools__dropdown-title">Sort by:</div>
+                <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                    </svg><span class="menu-tools__link-title">Oldest First</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                    </svg><span class="menu-tools__link-title">Newest First</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#arrowHight"></use>
+                    </svg><span class="menu-tools__link-title">Highest Price</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#arrowLow"></use>
+                    </svg><span class="menu-tools__link-title">Lowest Price</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar request__tabbar">
+            <div class="tabbar__list"><a class="tabbar__item is-active" href="#"> <span>User’s Info</span></a><a
+                class="tabbar__item" href="#"> <span>Company List</span></a></div>
+          </div>
+          <div class="request-list">
+            <div class="request-list__inner">
+              <div class="request-list__content">
+                <div class="request-card request-card--sm">
+                  <div class="request-card__content">
+                    <div class="request-card__inner">
+                      <div class="request-card__body">
+                        <div class="request-card__main">
+                          <div class="request-card__main-inner">
+                            <div class="request-card__label"> <span>05.25.2021; 12:15 a.m.</span></div><a
+                              class="request-card__title" href="#">#32429784</a>
+                          </div>
+                        </div>
+                        <div class="request-card__list">
+                          <div class="request-card__list-item"> <strong>Request Time:</strong>
+                            <div> <span>05.25.2021; 12:15 a.m.</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Product type :</strong>
+                            <div> <svg class="icon">
+                                <use xlink:href="assets/sprites/iconsConst.svg#flower"></use>
+                              </svg><span>Buds</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Amount :</strong>
+                            <div> <span>3234 lb</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Production Method :</strong>
+                            <div> <span>Indoor</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>THC% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>CBD, %% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Size :</strong>
+                            <div> <span>Pre-Roll Flower</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Classification :</strong>
+                            <div> <span>100% Indica</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Waiting Price :</strong>
+                            <div> <span>$ 123213</span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="request-card__footer">
+                        <div class="request-card__user">
+                          <picture class="request-card__user-img"><img src="../../assets/media/temp/user.jpg" alt="">
+                          </picture>
+                          <div class="request-card__user-main">
+                            <h3 class="request-card__user-title">Buyer:</h3><span class="request-card__user-name">Sarah
+                              Pelot-Donnelly</span><a class="request-card__user-link" href="#"><svg class="icon">
+                                <use xlink:href="assets/sprites/icons.svg#phone"></use>
+                              </svg><span>+1 (437) 66-6574</span></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="request-card__inner-accordion" data-request-accordion="content">
+                      <div class="request-card__list"> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="request-card request-card--sm">
+                  <div class="request-card__content">
+                    <div class="request-card__inner">
+                      <div class="request-card__body">
+                        <div class="request-card__main">
+                          <div class="request-card__main-inner">
+                            <div class="request-card__label"> <span>05.25.2021; 12:15 a.m.</span></div><a
+                              class="request-card__title" href="#">#32429784</a>
+                          </div>
+                        </div>
+                        <div class="request-card__list">
+                          <div class="request-card__list-item"> <strong>Request Time:</strong>
+                            <div> <span>05.25.2021; 12:15 a.m.</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Product type :</strong>
+                            <div> <svg class="icon">
+                                <use xlink:href="assets/sprites/iconsConst.svg#flower"></use>
+                              </svg><span>Buds</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Amount :</strong>
+                            <div> <span>3234 lb</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Production Method :</strong>
+                            <div> <span>Indoor</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>THC% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>CBD, %% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Size :</strong>
+                            <div> <span>Pre-Roll Flower</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Classification :</strong>
+                            <div> <span>100% Indica</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Waiting Price :</strong>
+                            <div> <span>$ 123213</span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="request-card__footer">
+                        <div class="request-card__user">
+                          <picture class="request-card__user-img"><img src="../../assets/media/temp/user.jpg" alt="">
+                          </picture>
+                          <div class="request-card__user-main">
+                            <h3 class="request-card__user-title">Buyer:</h3><span class="request-card__user-name">Sarah
+                              Pelot-Donnelly</span><a class="request-card__user-link" href="#"><svg class="icon">
+                                <use xlink:href="assets/sprites/icons.svg#phone"></use>
+                              </svg><span>+1 (437) 66-6574</span></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="request-card__inner-accordion" data-request-accordion="content">
+                      <div class="request-card__list"> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="request-card request-card--sm">
+                  <div class="request-card__content">
+                    <div class="request-card__inner">
+                      <div class="request-card__body">
+                        <div class="request-card__main">
+                          <div class="request-card__main-inner">
+                            <div class="request-card__label"> <span>05.25.2021; 12:15 a.m.</span></div><a
+                              class="request-card__title" href="#">#32429784</a>
+                          </div>
+                        </div>
+                        <div class="request-card__list">
+                          <div class="request-card__list-item"> <strong>Request Time:</strong>
+                            <div> <span>05.25.2021; 12:15 a.m.</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Product type :</strong>
+                            <div> <svg class="icon">
+                                <use xlink:href="assets/sprites/iconsConst.svg#flower"></use>
+                              </svg><span>Buds</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Amount :</strong>
+                            <div> <span>3234 lb</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Production Method :</strong>
+                            <div> <span>Indoor</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>THC% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>CBD, %% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Size :</strong>
+                            <div> <span>Pre-Roll Flower</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Classification :</strong>
+                            <div> <span>100% Indica</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Waiting Price :</strong>
+                            <div> <span>$ 123213</span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="request-card__footer">
+                        <div class="request-card__user">
+                          <picture class="request-card__user-img"><img src="../../assets/media/temp/user.jpg" alt="">
+                          </picture>
+                          <div class="request-card__user-main">
+                            <h3 class="request-card__user-title">Buyer:</h3><span class="request-card__user-name">Sarah
+                              Pelot-Donnelly</span><a class="request-card__user-link" href="#"><svg class="icon">
+                                <use xlink:href="assets/sprites/icons.svg#phone"></use>
+                              </svg><span>+1 (437) 66-6574</span></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="request-card__inner-accordion" data-request-accordion="content">
+                      <div class="request-card__list"> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="request-card request-card--sm">
+                  <div class="request-card__content">
+                    <div class="request-card__inner">
+                      <div class="request-card__body">
+                        <div class="request-card__main">
+                          <div class="request-card__main-inner">
+                            <div class="request-card__label"> <span>05.25.2021; 12:15 a.m.</span></div><a
+                              class="request-card__title" href="#">#32429784</a>
+                          </div>
+                        </div>
+                        <div class="request-card__list">
+                          <div class="request-card__list-item"> <strong>Request Time:</strong>
+                            <div> <span>05.25.2021; 12:15 a.m.</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Product type :</strong>
+                            <div> <svg class="icon">
+                                <use xlink:href="assets/sprites/iconsConst.svg#flower"></use>
+                              </svg><span>Buds</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Amount :</strong>
+                            <div> <span>3234 lb</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Production Method :</strong>
+                            <div> <span>Indoor</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>THC% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>CBD, %% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Size :</strong>
+                            <div> <span>Pre-Roll Flower</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Classification :</strong>
+                            <div> <span>100% Indica</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Waiting Price :</strong>
+                            <div> <span>$ 123213</span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="request-card__footer">
+                        <div class="request-card__user">
+                          <picture class="request-card__user-img"><img src="../../assets/media/temp/user.jpg" alt="">
+                          </picture>
+                          <div class="request-card__user-main">
+                            <h3 class="request-card__user-title">Buyer:</h3><span class="request-card__user-name">Sarah
+                              Pelot-Donnelly</span><a class="request-card__user-link" href="#"><svg class="icon">
+                                <use xlink:href="assets/sprites/icons.svg#phone"></use>
+                              </svg><span>+1 (437) 66-6574</span></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="request-card__inner-accordion" data-request-accordion="content">
+                      <div class="request-card__list"> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="request-card request-card--sm">
+                  <div class="request-card__content">
+                    <div class="request-card__inner">
+                      <div class="request-card__body">
+                        <div class="request-card__main">
+                          <div class="request-card__main-inner">
+                            <div class="request-card__label"> <span>05.25.2021; 12:15 a.m.</span></div><a
+                              class="request-card__title" href="#">#32429784</a>
+                          </div>
+                        </div>
+                        <div class="request-card__list">
+                          <div class="request-card__list-item"> <strong>Request Time:</strong>
+                            <div> <span>05.25.2021; 12:15 a.m.</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Product type :</strong>
+                            <div> <svg class="icon">
+                                <use xlink:href="assets/sprites/iconsConst.svg#flower"></use>
+                              </svg><span>Buds</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Amount :</strong>
+                            <div> <span>3234 lb</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Production Method :</strong>
+                            <div> <span>Indoor</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>THC% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>CBD, %% :</strong>
+                            <div> <span>45%</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Size :</strong>
+                            <div> <span>Pre-Roll Flower</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Classification :</strong>
+                            <div> <span>100% Indica</span></div>
+                          </div>
+                          <div class="request-card__list-item"> <strong>Waiting Price :</strong>
+                            <div> <span>$ 123213</span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="request-card__footer">
+                        <div class="request-card__user">
+                          <picture class="request-card__user-img"><img src="../../assets/media/temp/user.jpg" alt="">
+                          </picture>
+                          <div class="request-card__user-main">
+                            <h3 class="request-card__user-title">Buyer:</h3><span class="request-card__user-name">Sarah
+                              Pelot-Donnelly</span><a class="request-card__user-link" href="#"><svg class="icon">
+                                <use xlink:href="assets/sprites/icons.svg#phone"></use>
+                              </svg><span>+1 (437) 66-6574</span></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="request-card__inner-accordion" data-request-accordion="content">
+                      <div class="request-card__list"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <div class="modal modal-sources" id="modal-sources-example">
+      <div class="modal__overlay" tabindex="-1" data-modal-close>
+        <div class="modal__content"><button class="button modal__close" type="button" aria-label="close modal"
+            data-modal-close><span class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#cancel"></use>
+                </svg></span></span></button>
+          <form class="source-loader" action="">
+            <div class="source-loader__section">
+              <h2 class="source-loader__title">Product Images</h2>
+              <div class="source-loader__row">
+                <div class="source-loader__field">
+                  <div class="image-loader" data-component="image-loader"><input class="image-loader__images"
+                      type="file" name="sdzxzxc" multiple data-allow-reorder="true" data-max-file-size="10MB"
+                      data-max-files="3" data-node="input"></div>
+                </div>
+                <div class="source-loader__rules">
+                  <h3 class="source-loader__subtitle">Your Images must be:</h3>
+                  <ul class="source-loader__list">
+                    <li class="source-loader__text">700 x 384 minimum dimensions</li>
+                    <li class="source-loader__text">10 MB maximum file size</li>
+                    <li class="source-loader__text">Avoid using logos for product images</li>
+                    <li class="source-loader__text">Rearrange images by draging photo</li>
+                  </ul>
+                  <ul class="source-loader__list source-loader__list_important">
+                    <li class="source-loader__text source-loader__text_important"><span
+                        class="source-loader__icon"></span> Download limit: 3 images</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="source-loader__section">
+              <h2 class="source-loader__title">Video</h2>
+              <div class="source-loader__row"><label class="field field_theme_neon-gray source-loader__field"><input
+                    class="field__input" type="text" placeholder="https://"><span
+                    class="field__substrate"></span></label><button
+                  class="button source-loader__submit button_theme_shiny-dark" type="submit"><span
+                    class="button__inner"><span class="button__title">Save Changes</span></span></button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

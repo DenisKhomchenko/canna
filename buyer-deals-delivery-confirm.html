@@ -1,0 +1,975 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>seller: deal chat</title>
+    <style type="text/css">
+      .tech-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+      .tech-container section {
+        margin-bottom: 50px;
+      }
+      .tech-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tech-separator-col {
+        width: 20px;
+        height: 20px;
+      }
+      .tech-separator-row {
+        width: 100%;
+        height: 20px;
+      }
+      .tech-separator-hr {
+        border: 1px solid #959595;
+      }
+      .tech-w-100p {
+        width: 100%;
+      }
+      .tech-w-300 {
+        width: 300px;
+      }
+      .tech-h-100vh {
+        height: 100vh;
+      }
+      .sitemap-panel {
+        position: fixed;
+        z-index: 9999999;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 24px 32px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transform: translate(0, 40px);
+        transition: 0.4s ease-out;
+        background-color: #20202B;
+      }
+      .sitemap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-width: 640px;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 0 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transition: 0.4s ease-out;
+      }
+      .sitemap-panel:hover,
+      .sitemap_shown {
+        transform: translate(0, 0);
+      }
+      .sitemap_shown {
+        height: 100%;
+      }
+      .sitemap_shown .sitemap__list {
+        display: flex;
+      }
+      .sitemap__list {
+        display: none;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+      .sitemap__link {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        color: inherit;
+        text-decoration: none;
+        transition: 0.4s ease-out;
+      }
+      .sitemap__link:hover {
+        opacity: 0.5;
+      }
+      .sitemap__stack {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script defer src="js/lib/vendors.js"></script>
+    <script defer src="js/main.js"></script>
+    <link href="css/lib/vendors.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sitemap-panel">
+      <div class="sitemap" data-component="sitemap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">sitemap</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="index.html">index</a><a class="sitemap__link"
+            href="signIn.html">signIn</a><a class="sitemap__link" href="signUp.html">signUp/step-1</a><a
+            class="sitemap__link" href="signUp-verification.html">signUp/step-2</a><a class="sitemap__link"
+            href="company-registration.html">company-registration</a><a class="sitemap__link"
+            href="password-restore-by-tel.html">signIn/password-restore/step-1/mobile</a><a class="sitemap__link"
+            href="password-restore-by-email.html">signIn/password-restore/step-1/email</a><a class="sitemap__link"
+            href="password-restore-code.html">signIn/password-restore/step-2</a><a class="sitemap__link"
+            href="password-restore-final.html">signIn/password-restore/step-3</a><a class="sitemap__link"
+            href="account.html">Account</a><a class="sitemap__link" href="account-seller.html">Account. Seller</a><a
+            class="sitemap__link" href="account-list.html">Account. List</a><a class="sitemap__link"
+            href="faq.html">Faq</a><a class="sitemap__link" href="chat-support.html">Chat. Support </a><a
+            class="sitemap__link" href="deals.html">Deals</a><a class="sitemap__link" href="deals-view-row.html">Deals.
+            Row </a><a class="sitemap__link" href="buyers.html">Buyers</a><a class="sitemap__link"
+            href="buyer-marketplace.html">Buyer. Marketplace </a><a class="sitemap__link"
+            href="buyer-marketplace-view-row.html">Buyer. Marketplace. Row</a><a class="sitemap__link"
+            href="product-buyer.html">Buyer. Product</a><a class="sitemap__link" href="buyer-request-choise.html">Buyer.
+            Request. Choise</a><a class="sitemap__link" href="buyer-request-canceled.html">Buyer. Request.
+            Canceled</a><a class="sitemap__link" href="buyer-request-success.html">Buyer. Request. Success</a><a
+            class="sitemap__link" href="buyer-request-closed.html">Buyer. Request. Closed</a><a class="sitemap__link"
+            href="buyer-request-sold.html">Buyer. Request. Sold</a><a class="sitemap__link"
+            href="product-manager.html">Manager. Product</a><a class="sitemap__link" href="manager-deal.html">Manager.
+            Deal </a><a class="sitemap__link" href="manager-deal-choise.html">Manager. Deal. Choise</a><a
+            class="sitemap__link" href="manager-deal-canceled.html">Manager. Deal. Canceled</a><a class="sitemap__link"
+            href="manager-deal-closed.html">Manager. Deal. Closed</a><a class="sitemap__link"
+            href="manager-deal-sold.html">Manager. Deal. Sold</a><a class="sitemap__link"
+            href="manager-product.html">Manager. Product </a><a class="sitemap__link"
+            href="manager-product-empty.html">Manager. Product. Empty</a><a class="sitemap__link"
+            href="requests-list.html">Request. List</a><a class="sitemap__link"
+            href="requests-list-buyers.html">Request. List. Buyers</a><a class="sitemap__link"
+            href="requests-list-offers.html">Request. List. Offers</a><a class="sitemap__link"
+            href="requests-edit.html">Request. Edit</a><a class="sitemap__link" href="requests-new.html">Request.
+            New</a><a class="sitemap__link" href="requests-statistics.html">Request. Statistics</a><a
+            class="sitemap__link" href="product-seller.html">Seller. Product</a><a class="sitemap__link"
+            href="seller-inventory.html">Seller. Inventory</a><a class="sitemap__link"
+            href="seller-chat-empty.html">Seller. Chat. Empty</a><a class="sitemap__link"
+            href="seller-chat-choise.html">Seller. Chat. Choise</a><a class="sitemap__link"
+            href="seller-chat-accepted.html">Seller. Chat. Accepted</a><a class="sitemap__link"
+            href="seller-chat-denied.html">Seller. Chat. Denied</a><a class="sitemap__link"
+            href="seller-deals-invoice.html">Seller. Deal. Invoice</a><a class="sitemap__link"
+            href="seller-deals-packing-confirm.html">Seller. Deal. Packing. Confirm</a><a class="sitemap__link"
+            href="seller-deals-packed.html">Seller. Deal. Packed</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirm.html">Seller. Deal. Delivery. Confirm</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirmed.html">Seller. Deal. Delivery. Confirmed</a><a class="sitemap__link"
+            href="seller-deals-money-received.html">Seller. Deal. Money received</a><a class="sitemap__link"
+            href="seller-deals-sold.html">Seller. Deal. Sold</a></div>
+      </div>
+      <div class="sitemap" data-component="componentsmap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">components</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="components-buttons.html">buttons</a><a
+            class="sitemap__link" href="components-fields.html">fields</a><a class="sitemap__link"
+            href="components-modals.html">modals</a><a class="sitemap__link" href="components-nav.html">navigation</a><a
+            class="sitemap__link" href="components-filter.html">filter</a><a class="sitemap__link"
+            href="components-deal.html">deal</a><a class="sitemap__link" href="components-product.html">product</a><a
+            class="sitemap__link" href="components-chat.html">Chat</a></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="sitemap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="componentsmap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <main class="p-dashboard">
+      <div class="p-dashboard__sidebar">
+        <div class="sidebar" data-component="sidebar">
+          <div class="sidebar__top"><a class="sidebar__logo sidebar__logo_type_default" href="index.html"></a><a
+              class="sidebar__logo sidebar__logo_type_compact" href="index.html"></a><button
+              class="sidebar__view-toggler" type="button" data-node="view-toggler"><span
+                class="sidebar__view-toggler-icon"><svg class="sidebar__view-toggler-svg">
+                  <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+                </svg></span></button></div><button class="button sidebar__request-btn button_theme_shiny-dark"><span
+              class="button__inner"><span class="button__icon button__icon_type_symbol button__icon_pos_before"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#addRound"></use>
+                </svg></span><span class="button__title">Add Request</span></span></button>
+          <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+              <li class="sidebar__item sidebar__item_active"><a class="sidebar__link" href="#"><span
+                    class="sidebar__icon"><svg class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#leaf"></use>
+                    </svg></span><span class="sidebar__title">Marketplace</span><span
+                    class="sidebar__count">(1235)</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><span
+                          class="sidebar__icon-point"></span><svg class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#deal"></use>
+                        </svg></span><span class="sidebar__title">My Deals</span><span
+                        class="sidebar__toggler-icon"><svg class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(100)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#invoices"></use>
+                    </svg></span><span class="sidebar__title">Orders</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><svg
+                          class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">My Requests</span><span
+                        class="sidebar__count">(123)</span><span class="sidebar__toggler-icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(123)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                        </svg></span><span class="sidebar__title">Week</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                        </svg></span><span class="sidebar__title">Month</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#settings"></use>
+                    </svg></span><span class="sidebar__title">Settings</span></a></li>
+            </ul>
+          </nav>
+          <div class="sidebar__suggestion">
+            <div class="sidebar__suggestion-box">
+              <picture class="sidebar__suggestion-pic">
+                <source srcset="assets/media/temp/adv.webp"><img class="sidebar__suggestion-img"
+                  src="assets/media/temp/adv.jpg" alt="" loading="lazy" decoding="async" width="200" height="200">
+              </picture>
+              <h2 class="sidebar__suggestion-title">Some Text For Advertisement</h2>
+              <p class="sidebar__suggestion-text">Connect to the large community of buyers as we bring them directly to
+                your cultivation facility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-dashboard__content">
+        <div class="p-dashboard__topbar">
+          <div class="topbar" data-component="topbar"><a class="topbar__balance" href="#">
+              <div class="topbar__balance-inner"><span class="topbar__balance-label">Balance:</span><span
+                  class="topbar__balance-value">$ 3567.67 </span></div>
+            </a>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link" href="#">Support</a></div>
+            </div>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#help"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#basket"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="favorite"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#favorite"> </use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><button class="topbar__link topbar__link_type_icon" type="button"
+                  title="search"><span class="topbar__icon-wrapper"><svg class="topbar__icon">
+                      <use xlink:href="assets/sprites/icons.svg#search"> </use>
+                    </svg></span></button></div>
+              <div class="topbar__item topbar__item_has_drop" data-dropdown="component"><button
+                  class="topbar__link topbar__link_type_icon" type="button" title="notifications"
+                  data-dropdown="toggler"><span class="topbar__icon-wrapper"><span
+                      class="topbar__icon-point"></span><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#notification"> </use>
+                    </svg></span></button>
+                <div class="dropdown topbar__dropdown" data-dropdown="dropdown">
+                  <div class="notifications-list topbar__dropdown-inner">
+                    <div class="notifications-list__header">
+                      <div class="notifications-list__title">Notifications:</div><button
+                        class="notifications-list__button" type="button">Mark all as read</button>
+                    </div>
+                    <div class="notifications-list__items"><a class="notifications-card notifications-list__item _green"
+                        href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                            <div class="notifications-card__link">Go to </div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-tools topbar__profile" data-dropdown="component">
+                <div class="topbar__profile-toggler" role="button" data-dropdown="toggler">
+                  <div class="user-bio user-bio_size_md topbar__user-bio"><img class="user-bio__pic"
+                      src="assets/media/temp/user.jpg" alt=""></div><svg class="topbar__profile-icon">
+                    <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                  </svg>
+                </div>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#profile"></use>
+                      </svg><span class="menu-tools__link-title">My Profile</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#logout"></use>
+                      </svg><span class="menu-tools__link-title">Log Out </span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="breadcrumbs breadcrumbs_theme_faded p-dashboard__breadcrumbs">
+          <ul class="breadcrumbs__list" itemprop="http://schema.org/breadcrumb" itemscope=""
+            itemtype="http://schema.org/BreadcrumbList">
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><span class="breadcrumbs__link" title="" itemprop="item"><span
+                  class="breadcrumbs__title" itemprop="name">Deals</span></span>
+              <meta itemprop="position" content="2">
+            </li>
+          </ul>
+        </div>
+        <div class="p-dashboard__header">
+          <h1 class="page-title page-title_size_md p-dashboard__title">Deals</h1>
+          <div class="p-dashboard__views"><a class="button view-toggler _active p-dashboard__view-toggler"
+              href="#"><span class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                    class="button__icon-svg">
+                    <use xlink:href="assets/sprites/icons.svg#message"></use>
+                  </svg></span></span></a><a class="button view-toggler p-dashboard__view-toggler" href="#"><span
+                class="button__inner"><span class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                    <use xlink:href="assets/sprites/icons.svg#listView"></use>
+                  </svg></span></span></a></div>
+        </div>
+        <div class="chat">
+          <div class="chat__inner">
+            <div class="chat__aside">
+              <div class="chat__tools"><label class="field field_has-icon-before chat__search"><input
+                    class="field__input" type="text" placeholder="search..."><span
+                    class="field__icon field__icon_type_symbol"><svg class="field__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#search"></use>
+                    </svg></span></label>
+                <div class="menu-tools" data-dropdown="component"><button
+                    class="button menu-tools__toggler button_theme_shiny" type="button" data-dropdown="toggler"><span
+                      class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                          class="button__icon-svg">
+                          <use xlink:href="assets/sprites/icons.svg#filter"></use>
+                        </svg></span></span></button>
+                  <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                    <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg
+                          class="menu-tools__link-svg">
+                          <use xlink:href="assets/sprites/icons.svg#filterSort"></use>
+                        </svg><span class="menu-tools__link-title">Sort by Buyers</span></a><a class="menu-tools__link"
+                        href="#"><svg class="menu-tools__link-svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                        </svg><span class="menu-tools__link-title">Sort by Date</span></a><a class="menu-tools__link"
+                        href="#"><svg class="menu-tools__link-svg">
+                          <use xlink:href="assets/sprites/icons.svg#price"></use>
+                        </svg><span class="menu-tools__link-title">Sort by Price</span></a><a class="menu-tools__link"
+                        href="#"><svg class="menu-tools__link-svg">
+                          <use xlink:href="assets/sprites/icons.svg#cancelThin"></use>
+                        </svg><span class="menu-tools__link-title">Cancel Request</span></a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="filter-tabs chat__filter-tabs" data-component="drag-scroll">
+                <div class="filter-tabs__content" data-node="content">
+                  <div class="filter-tabs__item filter-tabs__item_active" role="button">Pending (128)</div>
+                  <div class="filter-tabs__item" role="button">Sold (435)</div>
+                  <div class="filter-tabs__item" role="button">Taken Off (435)</div>
+                </div>
+              </div>
+              <div class="chat__links"><a class="chat-link chat-link_active chat__link" href="#">
+                  <div class="chat-link__inner">
+                    <div class="chat-link__header">
+                      <h2 class="chat-link__title"><span class="chat-link__product-name">ID: 23432544 </span></h2><span
+                        class="chat-link__time">13:14</span>
+                    </div><span class="chat-link__status">Status: <span class="chat-link__status-value">Pending
+                        Payment</span> </span>
+                    <p class="chat-link__desc">Pops "D", Medium, THC: 15%, Color: 5/10, Structure: 3/10, Density: 7/10,
+                      Nose: 4/10</p>
+                    <div class="user-bio user-bio_size_sm chat-link__author"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                  </div>
+                </a><a class="chat-link chat-link_has-unread chat__link" href="#">
+                  <div class="chat-link__inner">
+                    <div class="chat-link__header">
+                      <h2 class="chat-link__title"><span class="chat-link__product-name">ID: 23432544 </span><span
+                          class="chat-link__count">4</span></h2><span class="chat-link__time">13:14</span>
+                    </div><span class="chat-link__status">Status: <span class="chat-link__status-value">Pending
+                        Payment</span> </span>
+                    <p class="chat-link__desc">Pops "D", Medium, THC: 15%, Color: 5/10, Structure: 3/10, Density: 7/10,
+                      Nose: 4/10</p>
+                    <div class="user-bio user-bio_size_sm chat-link__author"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                  </div>
+                </a><a class="chat-link chat__link" href="#">
+                  <div class="chat-link__inner">
+                    <div class="chat-link__header">
+                      <h2 class="chat-link__title"><span class="chat-link__product-name">ID: 23432544 </span></h2><span
+                        class="chat-link__time">13:14</span>
+                    </div><span class="chat-link__status">Status: <span class="chat-link__status-value">Pending
+                        Payment</span> </span>
+                    <p class="chat-link__desc">Pops "D", Medium, THC: 15%, Color: 5/10, Structure: 3/10, Density: 7/10,
+                      Nose: 4/10</p>
+                    <div class="user-bio user-bio_size_sm chat-link__author"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                  </div>
+                </a><a class="chat-link chat__link" href="#">
+                  <div class="chat-link__inner">
+                    <div class="chat-link__header">
+                      <h2 class="chat-link__title"><span class="chat-link__product-name">ID: 23432544 </span></h2><span
+                        class="chat-link__time">13:14</span>
+                    </div><span class="chat-link__status">Status: <span class="chat-link__status-value">Pending
+                        Payment</span> </span>
+                    <p class="chat-link__desc">Pops "D", Medium, THC: 15%, Color: 5/10, Structure: 3/10, Density: 7/10,
+                      Nose: 4/10</p>
+                    <div class="user-bio user-bio_size_sm chat-link__author"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                  </div>
+                </a><a class="chat-link chat__link" href="#">
+                  <div class="chat-link__inner">
+                    <div class="chat-link__header">
+                      <h2 class="chat-link__title"><span class="chat-link__product-name">ID: 23432544 </span></h2><span
+                        class="chat-link__time">13:14</span>
+                    </div><span class="chat-link__status">Status: <span class="chat-link__status-value">Pending
+                        Payment</span> </span>
+                    <p class="chat-link__desc">Pops "D", Medium, THC: 15%, Color: 5/10, Structure: 3/10, Density: 7/10,
+                      Nose: 4/10</p>
+                    <div class="user-bio user-bio_size_sm chat-link__author"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                  </div>
+                </a><a class="chat-link chat__link" href="#">
+                  <div class="chat-link__inner">
+                    <div class="chat-link__header">
+                      <h2 class="chat-link__title"><span class="chat-link__product-name">ID: 23432544 </span></h2><span
+                        class="chat-link__time">13:14</span>
+                    </div><span class="chat-link__status">Status: <span class="chat-link__status-value">Pending
+                        Payment</span> </span>
+                    <p class="chat-link__desc">Pops "D", Medium, THC: 15%, Color: 5/10, Structure: 3/10, Density: 7/10,
+                      Nose: 4/10</p>
+                    <div class="user-bio user-bio_size_sm chat-link__author"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                  </div>
+                </a></div>
+            </div>
+            <div class="chat__main">
+              <div class="chat__main-overflow">
+                <div class="chat__product-bio">
+                  <div class="product-bio _success">
+                    <div class="product-bio__row">
+                      <div class="product-bio__item">
+                        <div class="product-bio__id">ID: 23432544 </div><a class="product-bio__link" href="#">Go to
+                          product</a>
+                      </div>
+                      <div class="product-bio__item">
+                        <div class="product-bio__prop-title product-bio__prop-title_accent">
+                          <div class="product-bio__prop-icon"><svg class="product-bio__prop-svg">
+                              <use xlink:href="assets/sprites/iconsConst.svg#pack"></use>
+                            </svg></div>Available for sale:
+                        </div>
+                        <div class="product-bio__prop-value">228 lb</div>
+                      </div>
+                      <div class="product-bio__item">
+                        <div class="product-bio__prop-title">Update:</div>
+                        <div class="product-bio__prop-value">05.25.2021; 12:15 a.m.</div>
+                      </div>
+                      <div class="product-bio__item">
+                        <div class="product-bio__prop-title">Status</div>
+                        <div class="product-bio__status">
+                          <div class="product-bio__status-icon"></div>
+                          <div class="product-bio__prop-value">Success</div>
+                        </div>
+                      </div>
+                      <div class="product-bio__item _align-right _p-right-md">
+                        <div class="user-bio"><img class="user-bio__pic" src="assets/media/temp/user.jpg" alt="">
+                          <div class="user-bio__info"><span class="user-bio__title">Success Manager:</span><span
+                              class="user-bio__name">Sarah Pelot-Donnelly</span><a class="user-bio__contacts"
+                              href="tel:000">
+                              <div class="user-bio__contacts-icon"><svg class="user-bio__contacts-svg">
+                                  <use xlink:href="assets/sprites/icons.svg#phone"></use>
+                                </svg></div>+1 (437) 66-6574
+                            </a></div><button class="button button_theme_shiny-dark user-bio__rate" type="button"
+                            title="Set rating manager" data-modal-open="modal-review-example"><span
+                              class="button__inner"><span class="user-bio__rate-touch-area"></span><span
+                                class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                                  <use xlink:href="assets/sprites/icons.svg#rate"></use>
+                                </svg></span></span></button>
+                        </div>
+                      </div>
+                      <div class="menu-tools product-bio__item" data-dropdown="component"><button
+                          class="button menu-tools__toggler button_theme_neon" type="button"
+                          data-dropdown="toggler"><span class="button__inner"><span
+                              class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                                <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                              </svg></span></span></button>
+                        <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                          <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg
+                                class="menu-tools__link-svg">
+                                <use xlink:href="assets/sprites/icons.svg#history"></use>
+                              </svg><span class="menu-tools__link-title">Deal History</span></a><a
+                              class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                                <use xlink:href="assets/sprites/icons.svg#cancelThin"></use>
+                              </svg><span class="menu-tools__link-title">Cancel Deal</span></a><a
+                              class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                                <use xlink:href="assets/sprites/icons.svg#license"></use>
+                              </svg><span class="menu-tools__link-title">License Info</span></a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-bio__row">
+                      <div class="product-bio__item _p-right-md"><a class="product-link" href="#"><img
+                            class="product-link__pic" src="assets/media/temp/product-card.jpg" alt="">
+                          <div class="product-link__content">
+                            <div class="product-link__title">A(CA) Cookies -Bulk</div>
+                            <div class="product-link__desc">Pops "D", Medium, THC: 15%</div>
+                          </div>
+                        </a></div>
+                      <div class="product-bio__item">
+                        <div class="product-bio__prop-title">Amount:</div>
+                        <div class="product-bio__prop-value">3234 lb </div>
+                      </div>
+                      <div class="product-bio__item">
+                        <div class="product-bio__prop-title">Target Price:</div>
+                        <div class="product-bio__prop-value">$ 228 </div>
+                      </div>
+                      <div class="product-bio__item">
+                        <div class="product-bio__prop-title">Deal Price:</div>
+                        <div class="product-bio__prop-value"><a class="product-bio__link"
+                            href="#">vvdf;lvmklsndvklsndkvnnk,n,mnm</a></div>
+                      </div>
+                      <div class="product-bio__order-status">
+                        <div class="product-bio__order-icon"><svg class="product-bio__order-svg">
+                            <use xlink:href="assets/sprites/iconsConst.svg#delivery"></use>
+                          </svg></div>
+                        <div class="product-bio__order-info">
+                          <div class="product-bio__prop-value">In Delivery</div><a
+                            class="product-bio__link product-bio__link_underline" href="#">Details</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-pin chat__pin" data-component="chat-pin"><button class="button chat-pin__remove"
+                    type="button" data-node="remove"><span class="button__inner"><span
+                        class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                          <use xlink:href="assets/sprites/icons.svg#cancel"></use>
+                        </svg></span></span></button>
+                  <div class="chat-pin__title">Pinned Message #1</div>
+                  <div class="chat-pin__message">
+                    <div class="chat-pin__status-icon"><svg class="chat-pin__status-svg">
+                        <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                      </svg></div>
+                    <div class="chat-pin__text">Your shipment <a href="#">ID: 23432544</a> has been packed</div>
+                  </div>
+                  <div class="chat-pin__info">
+                    <div class="user-bio user-bio_size_xs user-bio_theme_faded chat-pin__user-bio"><img
+                        class="user-bio__pic" src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                    <div class="chat-pin__date"><svg class="chat-pin__date-icon">
+                        <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                      </svg>05.25.2022</div>
+                  </div>
+                </div>
+                <div class="chat__dialog">
+                  <div class="chat-dialog">
+                    <div class="chat-dialog__item chat-dialog__item_align_left">
+                      <div class="chat-dialog__stack chat-dialog__stack_fast">
+                        <div class="chat-dialog__message"><img class="chat-dialog__pic" src="assets/media/temp/user.jpg"
+                            alt="">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">Sarah Pelot-Donnelly <span
+                                class="chat-dialog__message-date">13:14</span></div>
+                            <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">trtrtrtrttrtr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">trtr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">tr</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__item chat-dialog__item_align_right">
+                      <div class="chat-dialog__stack chat-dialog__stack_fst">
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">You <span class="chat-dialog__message-date">13:14</span>
+                            </div>
+                            <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">frfrfrfrfrfrfr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">frfr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">fr</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__date">11.13.2022</div>
+                    <div class="chat-dialog__item chat-dialog__item_align_left">
+                      <div class="chat-dialog__stack">
+                        <div class="chat-dialog__stack-item">
+                          <div class="chat-dialog__message"><img class="chat-dialog__pic"
+                              src="assets/media/temp/user.jpg" alt="">
+                            <div class="chat-dialog__content">
+                              <div class="chat-dialog__title">Sarah Pelot-Donnelly <span
+                                  class="chat-dialog__message-date">13:14</span></div>
+                              <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__item chat-dialog__item_align_right">
+                      <div class="chat-dialog__stack">
+                        <div class="chat-dialog__stack-item">
+                          <div class="chat-dialog__message">
+                            <div class="chat-dialog__content">
+                              <div class="chat-dialog__title">You <span class="chat-dialog__message-date">13:14</span>
+                              </div>
+                              <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__item chat-dialog__item_align_left">
+                      <div class="chat-dialog__stack chat-dialog__stack_fast">
+                        <div class="chat-dialog__message"><img class="chat-dialog__pic" src="assets/media/temp/user.jpg"
+                            alt="">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">Sarah Pelot-Donnelly <span
+                                class="chat-dialog__message-date">13:14</span></div>
+                            <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">trtrtrtrttrtr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">trtr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">tr</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__item chat-dialog__item_align_right">
+                      <div class="chat-dialog__stack chat-dialog__stack_fst">
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">You <span class="chat-dialog__message-date">13:14</span>
+                            </div>
+                            <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">frfrfrfrfrfrfr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">frfr</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__text">fr</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__item chat-dialog__item_align_left">
+                      <div class="chat-dialog__stack">
+                        <div class="chat-dialog__message"><img class="chat-dialog__pic" src="assets/media/temp/user.jpg"
+                            alt="">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">Sarah Pelot-Donnelly <span
+                                class="chat-dialog__message-date">13:14</span></div>
+                            <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message"><img class="chat-dialog__pic" src="assets/media/temp/user.jpg"
+                            alt="">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">Sarah Pelot-Donnelly <span
+                                class="chat-dialog__message-date">13:18</span></div>
+                            <div class="chat-dialog__text">trtrtrtrttrtrtrtrtrttrtrttrtrttrtrtr trttrtrtrtrtrttr
+                              trtrtrtrtrttrtrtrt</div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message"><img class="chat-dialog__pic" src="assets/media/temp/user.jpg"
+                            alt="">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">Sarah Pelot-Donnelly <span
+                                class="chat-dialog__message-date">13:40</span></div>
+                            <div class="chat-dialog__text">tr tr...</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__item chat-dialog__item_align_right">
+                      <div class="chat-dialog__stack">
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">You <span class="chat-dialog__message-date">13:14</span>
+                            </div>
+                            <div class="chat-dialog__text">Some usual text abot problem with purcase Some usual text
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-dialog__message">
+                          <div class="chat-dialog__content">
+                            <div class="chat-dialog__title">You <span class="chat-dialog__message-date">17:40</span>
+                            </div>
+                            <div class="chat-dialog__text">frfrfrf frfr frfr???</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat-dialog__date">Today</div>
+                  </div>
+                </div>
+                <div class="chat__deal-notification">
+                  <div class="deal-notification">
+                    <div class="deal-notification__row">
+                      <div class="deal-notification__cell">
+                        <div class="deal-notification__head"></div>
+                        <div class="deal-notification__title">
+                          <div class="deal-notification__icon"><svg class="deal-notification__svg">
+                              <use xlink:href="assets/sprites/iconsConst.svg#deliveryPack"></use>
+                            </svg></div>Shipment <a href="#" class="deal-notification__title-link">ID: 23432544</a> has
+                          been passed for delivery. Confirm?
+                        </div>
+                        <div class="deal-notification__controls"><button
+                            class="button deal-notification__control button_theme_robot"><span
+                              class="button__inner"><span class="button__title">Yes</span></span></button><button
+                            class="button button_theme_night"><span class="button__inner"><span
+                                class="button__title">no</span></span></button></div>
+                      </div>
+                      <div class="deal-notification__cell">
+                        <div class="deal-notification__props">
+                          <div class="deal-notification__props-group">
+                            <div class="deal-notification__props-title">Created by:</div>
+                            <div class="user-bio user-bio_size_sm deal-notification__user-bio"><img
+                                class="user-bio__pic" src="assets/media/temp/user.jpg" alt="">
+                              <div class="user-bio__info"><span class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                            </div>
+                          </div>
+                          <div class="deal-notification__props-group">
+                            <div class="deal-notification__props-title">Date:</div>
+                            <div class="deal-notification__props-value">
+                              <div class="deal-notification__props-icon"><svg class="deal-notification__props-svg">
+                                  <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                                </svg></div>05. 20. 2022
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form class="chat-input chat__input" action="" data-component="chat-input">
+                <div class="chat-input__file-loader" data-node="file-menu">
+                  <div class="chat-input__file-loader-inner">
+                    <div class="chat-input__file-loader-box">
+                      <div class="chat-input__file-types" data-dropdown="dropdown"><button
+                          class="button chat-input__file-btn" type="button" data-node="file-type" data-type="docs"><span
+                            class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                                class="button__icon-svg">
+                                <use xlink:href="assets/sprites/icons.svg#addDocument"></use>
+                              </svg></span></span></button><button class="button chat-input__file-btn" type="button"
+                          data-node="file-type" data-type="images"><span class="button__inner"><span
+                              class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                                <use xlink:href="assets/sprites/icons.svg#addMedia"></use>
+                              </svg></span></span></button></div><button
+                        class="button chat-input__file-btn chat-input__file-btn_last" type="button"
+                        data-dropdown="toggler"><span class="button__inner"><span
+                            class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                              <use xlink:href="assets/sprites/icons.svg#attach"></use>
+                            </svg></span></span></button><label><input class="chat-input__file" type="file"
+                          data-node="file" multiple data-component="file-loader"></label>
+                    </div>
+                  </div>
+                </div><textarea class="chat-input__input" name="msg" placeholder="Your message..." data-node="input"
+                  rows="2"></textarea><button class="chat-input__emoji-toggler" type="button"
+                  data-node="emoji-toggler"><span class="chat-input__emoji-touch-area"></span><svg
+                    class="chat-input__emoji-svg">
+                    <use xlink:href="assets/sprites/icons.svg#emoji"></use>
+                  </svg></button><button class="button chat-input__submit button_theme_shiny-dark" type="submit"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#send"></use>
+                      </svg></span></span></button>
+              </form>
+            </div>
+          </div><a class="button page-c-link button_theme_shiny" href="#"><span class="button__inner"><span
+                class="button__icon button__icon_type_symbol"><svg class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#leaf"></use>
+                </svg></span></span></a>
+        </div>
+        <div class="modal modal_theme_special modal-review" id="modal-review-example">
+          <div class="modal__overlay" tabindex="-1" data-modal-close>
+            <div class="modal__content"><button class="button modal__close" type="button" aria-label="close modal"
+                data-modal-close><span class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                      class="button__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#cancel"></use>
+                    </svg></span></span></button>
+              <h2 class="modal__title">How would you rate manager’s work?</h2>
+              <form class="form-review" action="">
+                <div class="form-review__rate">
+                  <div class="form-review__rate-box">
+                    <div class="user-bio form-review__user-bio"><img class="user-bio__pic"
+                        src="assets/media/temp/user.jpg" alt="">
+                      <div class="user-bio__info"><span class="user-bio__title">Success Manager:</span><span
+                          class="user-bio__name">Sarah Pelot-Donnelly</span></div>
+                    </div>
+                    <div class="form-review__rate-items"><label class="form-review__rate-item"><input
+                          class="form-review__rate-input" type="radio" name="rate"><span
+                          class="form-review__rate-inner"><img class="form-review__rate-pic"
+                            src="assets/media/rateEmoji/terrible.png" alt=""><span
+                            class="form-review__rate-title">Terrible</span></span></label><label
+                        class="form-review__rate-item"><input class="form-review__rate-input" type="radio"
+                          name="rate"><span class="form-review__rate-inner"><img class="form-review__rate-pic"
+                            src="assets/media/rateEmoji/bad.png" alt=""><span
+                            class="form-review__rate-title">Bad</span></span></label><label
+                        class="form-review__rate-item"><input class="form-review__rate-input" type="radio" name="rate"
+                          checked><span class="form-review__rate-inner"><img class="form-review__rate-pic"
+                            src="assets/media/rateEmoji/ok.png" alt=""><span
+                            class="form-review__rate-title">Ok</span></span></label><label
+                        class="form-review__rate-item"><input class="form-review__rate-input" type="radio"
+                          name="rate"><span class="form-review__rate-inner"><img class="form-review__rate-pic"
+                            src="assets/media/rateEmoji/good.png" alt=""><span
+                            class="form-review__rate-title">Good</span></span></label><label
+                        class="form-review__rate-item"><input class="form-review__rate-input" type="radio"
+                          name="rate"><span class="form-review__rate-inner"><img class="form-review__rate-pic"
+                            src="assets/media/rateEmoji/great.png" alt=""><span
+                            class="form-review__rate-title">Great</span></span></label></div>
+                  </div>
+                </div>
+                <div class="form-review__message"><label class="field"><textarea class="field__textarea" rows="5"
+                      placeholder="Leave your comment"></textarea></label></div><button
+                  class="button form-review__submit button_theme_shiny" type="submit"><span class="button__inner"><span
+                      class="button__title">Send</span></span></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

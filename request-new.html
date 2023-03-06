@@ -1,0 +1,719 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request. Filter</title>
+    <style type="text/css">
+      .tech-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+      .tech-container section {
+        margin-bottom: 50px;
+      }
+      .tech-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tech-separator-col {
+        width: 20px;
+        height: 20px;
+      }
+      .tech-separator-row {
+        width: 100%;
+        height: 20px;
+      }
+      .tech-separator-hr {
+        border: 1px solid #959595;
+      }
+      .tech-w-100p {
+        width: 100%;
+      }
+      .tech-w-300 {
+        width: 300px;
+      }
+      .tech-h-100vh {
+        height: 100vh;
+      }
+      .sitemap-panel {
+        position: fixed;
+        z-index: 9999999;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 24px 32px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transform: translate(0, 40px);
+        transition: 0.4s ease-out;
+        background-color: #20202B;
+      }
+      .sitemap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-width: 640px;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 0 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transition: 0.4s ease-out;
+      }
+      .sitemap-panel:hover,
+      .sitemap_shown {
+        transform: translate(0, 0);
+      }
+      .sitemap_shown {
+        height: 100%;
+      }
+      .sitemap_shown .sitemap__list {
+        display: flex;
+      }
+      .sitemap__list {
+        display: none;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+      .sitemap__link {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        color: inherit;
+        text-decoration: none;
+        transition: 0.4s ease-out;
+      }
+      .sitemap__link:hover {
+        opacity: 0.5;
+      }
+      .sitemap__stack {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script defer src="js/lib/vendors.js"></script>
+    <script defer src="js/main.js"></script>
+    <link href="css/lib/vendors.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sitemap-panel">
+      <div class="sitemap" data-component="sitemap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">sitemap</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="index.html">index</a><a class="sitemap__link"
+            href="signIn.html">signIn</a><a class="sitemap__link" href="signUp.html">signUp/step-1</a><a
+            class="sitemap__link" href="signUp-verification.html">signUp/step-2</a><a class="sitemap__link"
+            href="company-registration.html">company-registration</a><a class="sitemap__link"
+            href="password-restore-by-tel.html">signIn/password-restore/step-1/mobile</a><a class="sitemap__link"
+            href="password-restore-by-email.html">signIn/password-restore/step-1/email</a><a class="sitemap__link"
+            href="password-restore-code.html">signIn/password-restore/step-2</a><a class="sitemap__link"
+            href="password-restore-final.html">signIn/password-restore/step-3</a><a class="sitemap__link"
+            href="account.html">Account</a><a class="sitemap__link" href="account-seller.html">Account. Seller</a><a
+            class="sitemap__link" href="account-list.html">Account. List</a><a class="sitemap__link"
+            href="faq.html">Faq</a><a class="sitemap__link" href="chat-support.html">Chat. Support </a><a
+            class="sitemap__link" href="deals.html">Deals</a><a class="sitemap__link" href="deals-view-row.html">Deals.
+            Row </a><a class="sitemap__link" href="buyers.html">Buyers</a><a class="sitemap__link"
+            href="buyer-marketplace.html">Buyer. Marketplace </a><a class="sitemap__link"
+            href="buyer-marketplace-view-row.html">Buyer. Marketplace. Row</a><a class="sitemap__link"
+            href="product-buyer.html">Buyer. Product</a><a class="sitemap__link" href="buyer-request-choise.html">Buyer.
+            Request. Choise</a><a class="sitemap__link" href="buyer-request-canceled.html">Buyer. Request.
+            Canceled</a><a class="sitemap__link" href="buyer-request-success.html">Buyer. Request. Success</a><a
+            class="sitemap__link" href="buyer-request-closed.html">Buyer. Request. Closed</a><a class="sitemap__link"
+            href="buyer-request-sold.html">Buyer. Request. Sold</a><a class="sitemap__link"
+            href="product-manager.html">Manager. Product</a><a class="sitemap__link" href="manager-deal.html">Manager.
+            Deal </a><a class="sitemap__link" href="manager-deal-choise.html">Manager. Deal. Choise</a><a
+            class="sitemap__link" href="manager-deal-canceled.html">Manager. Deal. Canceled</a><a class="sitemap__link"
+            href="manager-deal-closed.html">Manager. Deal. Closed</a><a class="sitemap__link"
+            href="manager-deal-sold.html">Manager. Deal. Sold</a><a class="sitemap__link"
+            href="manager-product.html">Manager. Product </a><a class="sitemap__link"
+            href="manager-product-empty.html">Manager. Product. Empty</a><a class="sitemap__link"
+            href="requests-list.html">Request. List</a><a class="sitemap__link"
+            href="requests-list-buyers.html">Request. List. Buyers</a><a class="sitemap__link"
+            href="requests-list-offers.html">Request. List. Offers</a><a class="sitemap__link"
+            href="requests-edit.html">Request. Edit</a><a class="sitemap__link" href="requests-new.html">Request.
+            New</a><a class="sitemap__link" href="requests-statistics.html">Request. Statistics</a><a
+            class="sitemap__link" href="product-seller.html">Seller. Product</a><a class="sitemap__link"
+            href="seller-inventory.html">Seller. Inventory</a><a class="sitemap__link"
+            href="seller-chat-empty.html">Seller. Chat. Empty</a><a class="sitemap__link"
+            href="seller-chat-choise.html">Seller. Chat. Choise</a><a class="sitemap__link"
+            href="seller-chat-accepted.html">Seller. Chat. Accepted</a><a class="sitemap__link"
+            href="seller-chat-denied.html">Seller. Chat. Denied</a><a class="sitemap__link"
+            href="seller-deals-invoice.html">Seller. Deal. Invoice</a><a class="sitemap__link"
+            href="seller-deals-packing-confirm.html">Seller. Deal. Packing. Confirm</a><a class="sitemap__link"
+            href="seller-deals-packed.html">Seller. Deal. Packed</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirm.html">Seller. Deal. Delivery. Confirm</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirmed.html">Seller. Deal. Delivery. Confirmed</a><a class="sitemap__link"
+            href="seller-deals-money-received.html">Seller. Deal. Money received</a><a class="sitemap__link"
+            href="seller-deals-sold.html">Seller. Deal. Sold</a></div>
+      </div>
+      <div class="sitemap" data-component="componentsmap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">components</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="components-buttons.html">buttons</a><a
+            class="sitemap__link" href="components-fields.html">fields</a><a class="sitemap__link"
+            href="components-modals.html">modals</a><a class="sitemap__link" href="components-nav.html">navigation</a><a
+            class="sitemap__link" href="components-filter.html">filter</a><a class="sitemap__link"
+            href="components-deal.html">deal</a><a class="sitemap__link" href="components-product.html">product</a><a
+            class="sitemap__link" href="components-chat.html">Chat</a></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="sitemap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="componentsmap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <main class="p-dashboard">
+      <div class="p-dashboard__sidebar">
+        <div class="sidebar" data-component="sidebar">
+          <div class="sidebar__top"><a class="sidebar__logo sidebar__logo_type_default" href="index.html"></a><a
+              class="sidebar__logo sidebar__logo_type_compact" href="index.html"></a><button
+              class="sidebar__view-toggler" type="button" data-node="view-toggler"><span
+                class="sidebar__view-toggler-icon"><svg class="sidebar__view-toggler-svg">
+                  <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+                </svg></span></button></div><button class="button sidebar__request-btn button_theme_shiny-dark"><span
+              class="button__inner"><span class="button__icon button__icon_type_symbol button__icon_pos_before"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#addRound"></use>
+                </svg></span><span class="button__title">Add Request</span></span></button>
+          <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+              <li class="sidebar__item sidebar__item_active"><a class="sidebar__link" href="#"><span
+                    class="sidebar__icon"><svg class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#leaf"></use>
+                    </svg></span><span class="sidebar__title">Marketplace</span><span
+                    class="sidebar__count">(1235)</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><span
+                          class="sidebar__icon-point"></span><svg class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#deal"></use>
+                        </svg></span><span class="sidebar__title">My Deals</span><span
+                        class="sidebar__toggler-icon"><svg class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(100)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#invoices"></use>
+                    </svg></span><span class="sidebar__title">Orders</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><svg
+                          class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">My Requests</span><span
+                        class="sidebar__count">(123)</span><span class="sidebar__toggler-icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(123)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                        </svg></span><span class="sidebar__title">Week</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                        </svg></span><span class="sidebar__title">Month</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#settings"></use>
+                    </svg></span><span class="sidebar__title">Settings</span></a></li>
+            </ul>
+          </nav>
+          <div class="sidebar__suggestion">
+            <div class="sidebar__suggestion-box">
+              <picture class="sidebar__suggestion-pic">
+                <source srcset="assets/media/temp/adv.webp"><img class="sidebar__suggestion-img"
+                  src="assets/media/temp/adv.jpg" alt="" loading="lazy" decoding="async" width="200" height="200">
+              </picture>
+              <h2 class="sidebar__suggestion-title">Some Text For Advertisement</h2>
+              <p class="sidebar__suggestion-text">Connect to the large community of buyers as we bring them directly to
+                your cultivation facility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-dashboard__content p-dashboard__content_type_product">
+        <div class="p-dashboard__topbar">
+          <div class="topbar" data-component="topbar"><a class="topbar__balance" href="#">
+              <div class="topbar__balance-inner"><span class="topbar__balance-label">Balance:</span><span
+                  class="topbar__balance-value">$ 3567.67 </span></div>
+            </a>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link" href="#">Support</a></div>
+            </div>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#help"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#basket"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="favorite"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#favorite"> </use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><button class="topbar__link topbar__link_type_icon" type="button"
+                  title="search"><span class="topbar__icon-wrapper"><svg class="topbar__icon">
+                      <use xlink:href="assets/sprites/icons.svg#search"> </use>
+                    </svg></span></button></div>
+              <div class="topbar__item topbar__item_has_drop" data-dropdown="component"><button
+                  class="topbar__link topbar__link_type_icon" type="button" title="notifications"
+                  data-dropdown="toggler"><span class="topbar__icon-wrapper"><span
+                      class="topbar__icon-point"></span><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#notification"> </use>
+                    </svg></span></button>
+                <div class="dropdown topbar__dropdown" data-dropdown="dropdown">
+                  <div class="notifications-list topbar__dropdown-inner">
+                    <div class="notifications-list__header">
+                      <div class="notifications-list__title">Notifications:</div><button
+                        class="notifications-list__button" type="button">Mark all as read</button>
+                    </div>
+                    <div class="notifications-list__items"><a class="notifications-card notifications-list__item _green"
+                        href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                            <div class="notifications-card__link">Go to </div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-tools topbar__profile" data-dropdown="component">
+                <div class="topbar__profile-toggler" role="button" data-dropdown="toggler">
+                  <div class="user-bio user-bio_size_md topbar__user-bio"><img class="user-bio__pic"
+                      src="assets/media/temp/user.jpg" alt=""></div><svg class="topbar__profile-icon">
+                    <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                  </svg>
+                </div>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#profile"></use>
+                      </svg><span class="menu-tools__link-title">My Profile</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#logout"></use>
+                      </svg><span class="menu-tools__link-title">Log Out </span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="breadcrumbs p-dashboard__breadcrumbs">
+          <ul class="breadcrumbs__list" itemprop="http://schema.org/breadcrumb" itemscope=""
+            itemtype="http://schema.org/BreadcrumbList">
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><a class="breadcrumbs__link" href="#" title=""
+                itemprop="item"><span class="breadcrumbs__title" itemprop="name">My Requests</span></a>
+              <meta itemprop="position" content="2">
+            </li>
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><span class="breadcrumbs__link" title="" itemprop="item"><span
+                  class="breadcrumbs__title" itemprop="name">New Request</span></span>
+              <meta itemprop="position" content="3">
+            </li>
+          </ul>
+        </div><a class="button page-goback p-dashboard__goback" href="#"><span class="button__inner"><span
+              class="button__icon button__icon_type_symbol button__icon_pos_before"><svg class="button__icon-svg">
+                <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+              </svg></span><span class="button__title">Go Back</span></span></a>
+        <form class="request">
+          <div class="request__header">
+            <h1 class="request__title">New Request</h1>
+          </div>
+          <div class="request__inner">
+            <div class="request-filter request__filter">
+              <div class="request-filter__section">
+                <h2 class="request-filter__section-title">Main features</h2>
+                <div class="request-filter__section-content">
+                  <div class="request-filter__group"> <label class="field" data-field="component"><input
+                        class="field__input" type="text" value="100"><span
+                        class="field__title field__title_type_float">Min Deal Amount</span></label><label class="field"
+                      data-field="component"><input class="field__input" type="text" value="100"><span
+                        class="field__title field__title_type_float">Min 1 Deal Amount</span></label><label
+                      class="field" data-field="component"><input class="field__input" type="text" value="5"
+                        data-mask="$ number"><span class="field__title field__title_type_float">Max
+                        Price</span></label><label class="field" data-field="component"><input class="field__input"
+                        type="text" value="50" data-mask="$ number"><span
+                        class="field__title field__title_type_float">Total Price</span></label></div>
+                  <div class="request-filter__group">
+                    <div class="filter-category"><input class="filter-category__input" type="checkbox" id="123aszx"
+                        name="buds"><label class="filter-category__label" for="123aszx"><span
+                          class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                              class="filter-category__svg">
+                              <use xlink:href="assets/sprites/icons.svg#categoryBuds"></use>
+                            </svg></span><span class="filter-category__title">Buds</span></span></label></div>
+                    <div class="filter-category"><input class="filter-category__input" type="checkbox" id="123aszxdd"
+                        name="edible"><label class="filter-category__label" for="123aszxdd"><span
+                          class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                              class="filter-category__svg">
+                              <use xlink:href="assets/sprites/icons.svg#categoryEdible"></use>
+                            </svg></span><span class="filter-category__title">Edible</span></span></label></div>
+                    <div class="filter-category"><input class="filter-category__input" type="checkbox" id="123aszxddee"
+                        name="nonEdible"><label class="filter-category__label" for="123aszxddee"><span
+                          class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                              class="filter-category__svg">
+                              <use xlink:href="assets/sprites/icons.svg#categoryNonEdible"></use>
+                            </svg></span><span class="filter-category__title">Non Edible</span></span></label></div>
+                    <div class="filter-category"><input class="filter-category__input" type="checkbox" id="123aszx2ddee"
+                        name="concentrate"><label class="filter-category__label" for="123aszx2ddee"><span
+                          class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                              class="filter-category__svg">
+                              <use xlink:href="assets/sprites/icons.svg#categoryConcentrate"></use>
+                            </svg></span><span class="filter-category__title">Concentrate</span></span></label></div>
+                  </div>
+                  <div class="request-filter__group">
+                    <div class="range" data-component="range"
+                      data-options="{&quot;start&quot;:[1,65],&quot;min&quot;:1,&quot;max&quot;:100,&quot;suffix&quot;:&quot; %&quot;}">
+                      <div class="range__title">ТНС, %</div>
+                      <div class="range__slider-wrapper">
+                        <div class="range__slider" data-node="slider"></div>
+                      </div>
+                      <div class="range__fields">
+                        <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                            data-node="input" data-type="from"></div>
+                        <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                            data-node="input" data-type="to"></div>
+                      </div>
+                    </div>
+                    <div class="range" data-component="range"
+                      data-options="{&quot;start&quot;:[1,65],&quot;min&quot;:1,&quot;max&quot;:100,&quot;suffix&quot;:&quot; %&quot;}">
+                      <div class="range__title">CBD, %</div>
+                      <div class="range__slider-wrapper">
+                        <div class="range__slider" data-node="slider"></div>
+                      </div>
+                      <div class="range__fields">
+                        <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                            data-node="input" data-type="from"></div>
+                        <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                            data-node="input" data-type="to"></div>
+                      </div>
+                    </div>
+                    <div class="filter-nose" data-component="filter-nose" data-value="3">
+                      <div class="filter-nose__title">nose</div>
+                      <div class="filter-nose__pips" data-node="pips"><label class="filter-nose__pip _active"
+                          data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose"
+                            data-node="input"><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip _active" data-node="pip"><input class="filter-nose__pip-input"
+                            type="radio" name="nose" data-node="input"><span
+                            class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip _active"
+                          data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose"
+                            data-node="input" checked><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip" data-node="pip"><input class="filter-nose__pip-input" type="radio"
+                            name="nose" data-node="input"><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip _long" data-node="pip"><input class="filter-nose__pip-input"
+                            type="radio" name="nose" data-node="input"><span
+                            class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip"
+                          data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose"
+                            data-node="input"><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip" data-node="pip"><input class="filter-nose__pip-input" type="radio"
+                            name="nose" data-node="input"><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip" data-node="pip"><input class="filter-nose__pip-input" type="radio"
+                            name="nose" data-node="input"><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip" data-node="pip"><input class="filter-nose__pip-input" type="radio"
+                            name="nose" data-node="input"><span class="filter-nose__pip-rec"></span></label><label
+                          class="filter-nose__pip _long" data-node="pip"><input class="filter-nose__pip-input"
+                            type="radio" name="nose" data-node="input"><span
+                            class="filter-nose__pip-rec"></span></label></div>
+                      <div class="filter-nose__controls"><button class="filter-nose__control" type="button"
+                          data-node="btn-min">Min</button><button class="filter-nose__control" type="button"
+                          data-node="btn-max">Max</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="request-filter__section">
+                <h2 class="request-filter__section-title request-filter__section-title--md">Other features</h2>
+                <div class="request-filter__section-content">
+                  <div class="request-filter__group">
+                    <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                      data-outside-handler="prevent"><button class="propsfilter__toggler" type="button"
+                        title="Classification" data-dropdown="toggler"><span
+                          class="propsfilter__toggler-title">Classification</span><span
+                          class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                            <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                          </svg></span></button>
+                      <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                          class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg1%%%0" data-node="option" data-title="100% Indica"><span
+                              class="field__checkbox"></span><span class="field__label">100% Indica</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg1%%%1" data-node="option" data-title="100% Sativa"><span
+                              class="field__checkbox"></span><span class="field__label">100% Sativa</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg1%%%2" data-node="option" data-title="&gt;50% Indica"><span
+                              class="field__checkbox"></span><span class="field__label">&gt;50% Indica</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg1%%%3" data-node="option" data-title="&gt;50% Sativa"><span
+                              class="field__checkbox"></span><span class="field__label">&gt;50% Sativa</span></div>
+                        </label></div>
+                    </div>
+                    <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                      data-outside-handler="prevent"><button class="propsfilter__toggler" type="button"
+                        title="Designation" data-dropdown="toggler"><span
+                          class="propsfilter__toggler-title">Designation</span><span
+                          class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                            <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                          </svg></span></button>
+                      <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                          class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%0" data-node="option" data-title="Hemp"><span
+                              class="field__checkbox"></span><span class="field__label">Hemp</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%1" data-node="option" data-title="Medical"><span
+                              class="field__checkbox"></span><span class="field__label">Medical</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%2" data-node="option" data-title="Medical"><span
+                              class="field__checkbox"></span><span class="field__label">Medical</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%3" data-node="option" data-title="Medical"><span
+                              class="field__checkbox"></span><span class="field__label">Medical</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%4" data-node="option" data-title="Medical"><span
+                              class="field__checkbox"></span><span class="field__label">Medical</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%5" data-node="option" data-title="Medical"><span
+                              class="field__checkbox"></span><span class="field__label">Medical</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg2%%%6" data-node="option" data-title="Medical"><span
+                              class="field__checkbox"></span><span class="field__label">Medical</span></div>
+                        </label></div>
+                    </div>
+                    <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                      data-outside-handler="prevent"><button class="propsfilter__toggler" type="button"
+                        title="Production Method" data-dropdown="toggler"><span
+                          class="propsfilter__toggler-title">Production Method</span><span
+                          class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                            <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                          </svg></span></button>
+                      <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                          class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg3%%%0" data-node="option" data-title="Indoor"><span
+                              class="field__checkbox"></span><span class="field__label">Indoor</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg3%%%1" data-node="option" data-title="Outdoor"><span
+                              class="field__checkbox"></span><span class="field__label">Outdoor</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg3%%%2" data-node="option" data-title="Outdoor"><span
+                              class="field__checkbox"></span><span class="field__label">Outdoor</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg3%%%3" data-node="option" data-title="Outdoor"><span
+                              class="field__checkbox"></span><span class="field__label">Outdoor</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg3%%%4" data-node="option" data-title="Outdoor"><span
+                              class="field__checkbox"></span><span class="field__label">Outdoor</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg3%%%5" data-node="option" data-title="Outdoor"><span
+                              class="field__checkbox"></span><span class="field__label">Outdoor</span></div>
+                        </label></div>
+                    </div>
+                    <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                      data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Size"
+                        data-dropdown="toggler"><span class="propsfilter__toggler-title">Size</span><span
+                          class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                            <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                          </svg></span></button>
+                      <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                          class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%0" data-node="option" data-title="Flower"><span
+                              class="field__checkbox"></span><span class="field__label">Flower</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%1" data-node="option" data-title="Pre-Roll Flower"><span
+                              class="field__checkbox"></span><span class="field__label">Pre-Roll Flower</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%2" data-node="option" data-title="Pre-Roll Infused"><span
+                              class="field__checkbox"></span><span class="field__label">Pre-Roll Infused</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%3" data-node="option" data-title="Pre-Roll Leaf"><span
+                              class="field__checkbox"></span><span class="field__label">Pre-Roll Leaf</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%4" data-node="option" data-title="Shake"><span
+                              class="field__checkbox"></span><span class="field__label">Shake</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%5" data-node="option" data-title="Smalls"><span
+                              class="field__checkbox"></span><span class="field__label">Smalls</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%6" data-node="option" data-title="Trim"><span
+                              class="field__checkbox"></span><span class="field__label">Trim</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%7" data-node="option" data-title="Shake"><span
+                              class="field__checkbox"></span><span class="field__label">Shake</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%8" data-node="option" data-title="Keef"><span
+                              class="field__checkbox"></span><span class="field__label">Keef</span></div>
+                        </label><label class="field propsfilter__option">
+                          <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"
+                              id="gg4%%%9" data-node="option" data-title="Fresh Frozen"><span
+                              class="field__checkbox"></span><span class="field__label">Fresh Frozen</span></div>
+                        </label></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="request-filter__actions"> <button
+                  class="button request-filter__action button_theme_shiny"><span class="button__inner"><span
+                      class="button__title">Submit</span></span></button><button
+                  class="button request-filter__action button_theme_night"><span class="button__inner"><span
+                      class="button__title">Submit &amp; Add Request</span></span></button></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <div class="modal modal-sources" id="modal-sources-example">
+      <div class="modal__overlay" tabindex="-1" data-modal-close>
+        <div class="modal__content"><button class="button modal__close" type="button" aria-label="close modal"
+            data-modal-close><span class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#cancel"></use>
+                </svg></span></span></button>
+          <form class="source-loader" action="">
+            <div class="source-loader__section">
+              <h2 class="source-loader__title">Product Images</h2>
+              <div class="source-loader__row">
+                <div class="source-loader__field">
+                  <div class="image-loader" data-component="image-loader"><input class="image-loader__images"
+                      type="file" name="sdzxzxc" multiple data-allow-reorder="true" data-max-file-size="10MB"
+                      data-max-files="3" data-node="input"></div>
+                </div>
+                <div class="source-loader__rules">
+                  <h3 class="source-loader__subtitle">Your Images must be:</h3>
+                  <ul class="source-loader__list">
+                    <li class="source-loader__text">700 x 384 minimum dimensions</li>
+                    <li class="source-loader__text">10 MB maximum file size</li>
+                    <li class="source-loader__text">Avoid using logos for product images</li>
+                    <li class="source-loader__text">Rearrange images by draging photo</li>
+                  </ul>
+                  <ul class="source-loader__list source-loader__list_important">
+                    <li class="source-loader__text source-loader__text_important"><span
+                        class="source-loader__icon"></span> Download limit: 3 images</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="source-loader__section">
+              <h2 class="source-loader__title">Video</h2>
+              <div class="source-loader__row"><label class="field field_theme_neon-gray source-loader__field"><input
+                    class="field__input" type="text" placeholder="https://"><span
+                    class="field__substrate"></span></label><button
+                  class="button source-loader__submit button_theme_shiny-dark" type="submit"><span
+                    class="button__inner"><span class="button__title">Save Changes</span></span></button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

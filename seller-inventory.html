@@ -1,0 +1,1652 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>seller: inventory</title>
+    <style type="text/css">
+      .tech-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+      .tech-container section {
+        margin-bottom: 50px;
+      }
+      .tech-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tech-separator-col {
+        width: 20px;
+        height: 20px;
+      }
+      .tech-separator-row {
+        width: 100%;
+        height: 20px;
+      }
+      .tech-separator-hr {
+        border: 1px solid #959595;
+      }
+      .tech-w-100p {
+        width: 100%;
+      }
+      .tech-w-300 {
+        width: 300px;
+      }
+      .tech-h-100vh {
+        height: 100vh;
+      }
+      .sitemap-panel {
+        position: fixed;
+        z-index: 9999999;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 24px 32px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transform: translate(0, 40px);
+        transition: 0.4s ease-out;
+        background-color: #20202B;
+      }
+      .sitemap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        height: auto;
+        max-width: 640px;
+        max-height: 100%;
+        box-sizing: border-box;
+        padding: 0 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: inherit;
+        transition: 0.4s ease-out;
+      }
+      .sitemap-panel:hover,
+      .sitemap_shown {
+        transform: translate(0, 0);
+      }
+      .sitemap_shown {
+        height: 100%;
+      }
+      .sitemap_shown .sitemap__list {
+        display: flex;
+      }
+      .sitemap__list {
+        display: none;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+      .sitemap__link {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        color: inherit;
+        text-decoration: none;
+        transition: 0.4s ease-out;
+      }
+      .sitemap__link:hover {
+        opacity: 0.5;
+      }
+      .sitemap__stack {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script defer src="js/lib/vendors.js"></script>
+    <script defer src="js/main.js"></script>
+    <link href="css/lib/vendors.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sitemap-panel">
+      <div class="sitemap" data-component="sitemap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">sitemap</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="index.html">index</a><a class="sitemap__link"
+            href="signIn.html">signIn</a><a class="sitemap__link" href="signUp.html">signUp/step-1</a><a
+            class="sitemap__link" href="signUp-verification.html">signUp/step-2</a><a class="sitemap__link"
+            href="company-registration.html">company-registration</a><a class="sitemap__link"
+            href="password-restore-by-tel.html">signIn/password-restore/step-1/mobile</a><a class="sitemap__link"
+            href="password-restore-by-email.html">signIn/password-restore/step-1/email</a><a class="sitemap__link"
+            href="password-restore-code.html">signIn/password-restore/step-2</a><a class="sitemap__link"
+            href="password-restore-final.html">signIn/password-restore/step-3</a><a class="sitemap__link"
+            href="account.html">Account</a><a class="sitemap__link" href="account-seller.html">Account. Seller</a><a
+            class="sitemap__link" href="account-list.html">Account. List</a><a class="sitemap__link"
+            href="faq.html">Faq</a><a class="sitemap__link" href="chat-support.html">Chat. Support </a><a
+            class="sitemap__link" href="deals.html">Deals</a><a class="sitemap__link" href="deals-view-row.html">Deals.
+            Row </a><a class="sitemap__link" href="buyers.html">Buyers</a><a class="sitemap__link"
+            href="buyer-marketplace.html">Buyer. Marketplace </a><a class="sitemap__link"
+            href="buyer-marketplace-view-row.html">Buyer. Marketplace. Row</a><a class="sitemap__link"
+            href="product-buyer.html">Buyer. Product</a><a class="sitemap__link" href="buyer-request-choise.html">Buyer.
+            Request. Choise</a><a class="sitemap__link" href="buyer-request-canceled.html">Buyer. Request.
+            Canceled</a><a class="sitemap__link" href="buyer-request-success.html">Buyer. Request. Success</a><a
+            class="sitemap__link" href="buyer-request-closed.html">Buyer. Request. Closed</a><a class="sitemap__link"
+            href="buyer-request-sold.html">Buyer. Request. Sold</a><a class="sitemap__link"
+            href="product-manager.html">Manager. Product</a><a class="sitemap__link" href="manager-deal.html">Manager.
+            Deal </a><a class="sitemap__link" href="manager-deal-choise.html">Manager. Deal. Choise</a><a
+            class="sitemap__link" href="manager-deal-canceled.html">Manager. Deal. Canceled</a><a class="sitemap__link"
+            href="manager-deal-closed.html">Manager. Deal. Closed</a><a class="sitemap__link"
+            href="manager-deal-sold.html">Manager. Deal. Sold</a><a class="sitemap__link"
+            href="manager-product.html">Manager. Product </a><a class="sitemap__link"
+            href="manager-product-empty.html">Manager. Product. Empty</a><a class="sitemap__link"
+            href="requests-list.html">Request. List</a><a class="sitemap__link"
+            href="requests-list-buyers.html">Request. List. Buyers</a><a class="sitemap__link"
+            href="requests-list-offers.html">Request. List. Offers</a><a class="sitemap__link"
+            href="requests-edit.html">Request. Edit</a><a class="sitemap__link" href="requests-new.html">Request.
+            New</a><a class="sitemap__link" href="requests-statistics.html">Request. Statistics</a><a
+            class="sitemap__link" href="product-seller.html">Seller. Product</a><a class="sitemap__link"
+            href="seller-inventory.html">Seller. Inventory</a><a class="sitemap__link"
+            href="seller-chat-empty.html">Seller. Chat. Empty</a><a class="sitemap__link"
+            href="seller-chat-choise.html">Seller. Chat. Choise</a><a class="sitemap__link"
+            href="seller-chat-accepted.html">Seller. Chat. Accepted</a><a class="sitemap__link"
+            href="seller-chat-denied.html">Seller. Chat. Denied</a><a class="sitemap__link"
+            href="seller-deals-invoice.html">Seller. Deal. Invoice</a><a class="sitemap__link"
+            href="seller-deals-packing-confirm.html">Seller. Deal. Packing. Confirm</a><a class="sitemap__link"
+            href="seller-deals-packed.html">Seller. Deal. Packed</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirm.html">Seller. Deal. Delivery. Confirm</a><a class="sitemap__link"
+            href="seller-deals-delivery-confirmed.html">Seller. Deal. Delivery. Confirmed</a><a class="sitemap__link"
+            href="seller-deals-money-received.html">Seller. Deal. Money received</a><a class="sitemap__link"
+            href="seller-deals-sold.html">Seller. Deal. Sold</a></div>
+      </div>
+      <div class="sitemap" data-component="componentsmap"><button class="button button_theme_night sitemap__toggler"
+          type="button" data-node="toggler"><span class="button__inner"> <span
+              class="button__title">components</span></span></button>
+        <div class="sitemap__list"><a class="sitemap__link" href="components-buttons.html">buttons</a><a
+            class="sitemap__link" href="components-fields.html">fields</a><a class="sitemap__link"
+            href="components-modals.html">modals</a><a class="sitemap__link" href="components-nav.html">navigation</a><a
+            class="sitemap__link" href="components-filter.html">filter</a><a class="sitemap__link"
+            href="components-deal.html">deal</a><a class="sitemap__link" href="components-product.html">product</a><a
+            class="sitemap__link" href="components-chat.html">Chat</a></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="sitemap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sitemapComponent = document.querySelector('[data-component="componentsmap"]');
+        const toggler = sitemapComponent.querySelector('[data-node="toggler"]');
+
+        toggler.addEventListener('click', () => {
+          sitemapComponent.classList.toggle('sitemap_shown');
+        });
+      });
+    </script>
+    <main class="p-dashboard">
+      <div class="p-dashboard__sidebar">
+        <div class="sidebar" data-component="sidebar">
+          <div class="sidebar__top"><a class="sidebar__logo sidebar__logo_type_default" href="index.html"></a><a
+              class="sidebar__logo sidebar__logo_type_compact" href="index.html"></a><button
+              class="sidebar__view-toggler" type="button" data-node="view-toggler"><span
+                class="sidebar__view-toggler-icon"><svg class="sidebar__view-toggler-svg">
+                  <use xlink:href="assets/sprites/icons.svg#arrowLeft"></use>
+                </svg></span></button></div><button class="button sidebar__request-btn button_theme_shiny-dark"><span
+              class="button__inner"><span class="button__icon button__icon_type_symbol button__icon_pos_before"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#addRound"></use>
+                </svg></span><span class="button__title">Add Request</span></span></button>
+          <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+              <li class="sidebar__item sidebar__item_active"><a class="sidebar__link" href="#"><span
+                    class="sidebar__icon"><svg class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#leaf"></use>
+                    </svg></span><span class="sidebar__title">Marketplace</span><span
+                    class="sidebar__count">(1235)</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><span
+                          class="sidebar__icon-point"></span><svg class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#deal"></use>
+                        </svg></span><span class="sidebar__title">My Deals</span><span
+                        class="sidebar__toggler-icon"><svg class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(100)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#invoices"></use>
+                    </svg></span><span class="sidebar__title">Orders</span></a></li>
+              <li class="sidebar__item sidebar__item_has_drop" data-dropdown="component" data-outside-handler="prevent">
+                <div class="sidebar__toggler-wrapper"><button class="sidebar__toggler" type="button"
+                    data-dropdown="toggler"><span class="sidebar__toggler-inner"><span class="sidebar__icon"><svg
+                          class="sidebar__svg sidebar__svg_root">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">My Requests</span><span
+                        class="sidebar__count">(123)</span><span class="sidebar__toggler-icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                        </svg></span></span></button></div>
+                <ul class="dropdown sidebar__dropdown" data-dropdown="dropdown">
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#request"></use>
+                        </svg></span><span class="sidebar__title">New</span><span
+                        class="sidebar__count">(123)</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#creditCard"></use>
+                        </svg></span><span class="sidebar__title">All</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                        </svg></span><span class="sidebar__title">Week</span></a></li>
+                  <li class="sidebar__dropdown-item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                          class="sidebar__svg">
+                          <use xlink:href="assets/sprites/icons.svg#calendarMonth"></use>
+                        </svg></span><span class="sidebar__title">Month</span></a></li>
+                </ul>
+              </li>
+              <li class="sidebar__item"><a class="sidebar__link" href="#"><span class="sidebar__icon"><svg
+                      class="sidebar__svg sidebar__svg_root">
+                      <use xlink:href="assets/sprites/icons.svg#settings"></use>
+                    </svg></span><span class="sidebar__title">Settings</span></a></li>
+            </ul>
+          </nav>
+          <div class="sidebar__suggestion">
+            <div class="sidebar__suggestion-box">
+              <picture class="sidebar__suggestion-pic">
+                <source srcset="assets/media/temp/adv.webp"><img class="sidebar__suggestion-img"
+                  src="assets/media/temp/adv.jpg" alt="" loading="lazy" decoding="async" width="200" height="200">
+              </picture>
+              <h2 class="sidebar__suggestion-title">Some Text For Advertisement</h2>
+              <p class="sidebar__suggestion-text">Connect to the large community of buyers as we bring them directly to
+                your cultivation facility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-dashboard__content">
+        <div class="p-dashboard__topbar">
+          <div class="topbar" data-component="topbar"><a class="topbar__balance" href="#">
+              <div class="topbar__balance-inner"><span class="topbar__balance-label">Balance:</span><span
+                  class="topbar__balance-value">$ 3567.67 </span></div>
+            </a>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link" href="#">Support</a></div>
+            </div>
+            <div class="topbar__list">
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#help"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="help"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#basket"></use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><a class="topbar__link topbar__link_type_icon" href="#" title="favorite"><span
+                    class="topbar__icon-wrapper"><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#favorite"> </use>
+                    </svg></span></a></div>
+              <div class="topbar__item"><button class="topbar__link topbar__link_type_icon" type="button"
+                  title="search"><span class="topbar__icon-wrapper"><svg class="topbar__icon">
+                      <use xlink:href="assets/sprites/icons.svg#search"> </use>
+                    </svg></span></button></div>
+              <div class="topbar__item topbar__item_has_drop" data-dropdown="component"><button
+                  class="topbar__link topbar__link_type_icon" type="button" title="notifications"
+                  data-dropdown="toggler"><span class="topbar__icon-wrapper"><span
+                      class="topbar__icon-point"></span><svg class="topbar__icon" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#notification"> </use>
+                    </svg></span></button>
+                <div class="dropdown topbar__dropdown" data-dropdown="dropdown">
+                  <div class="notifications-list topbar__dropdown-inner">
+                    <div class="notifications-list__header">
+                      <div class="notifications-list__title">Notifications:</div><button
+                        class="notifications-list__button" type="button">Mark all as read</button>
+                    </div>
+                    <div class="notifications-list__items"><a class="notifications-card notifications-list__item _green"
+                        href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                            <div class="notifications-card__link">Go to </div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a><a class="notifications-card notifications-list__item" href="#">
+                        <div class="notifications-card__inner">
+                          <div class="user-bio notifications-card__user-bio"><img class="user-bio__pic"
+                              src="assets/media/temp/user.jpg" alt=""></div>
+                          <div class="notifications-card__content">
+                            <div class="notifications-card__title">Sarah Pelot-Donnelly</div>
+                            <div class="notifications-card__text">Some kind of message about weed or weed</div>
+                          </div>
+                          <div class="notifications-card__date">25 min ago</div>
+                        </div>
+                      </a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-tools topbar__profile" data-dropdown="component">
+                <div class="topbar__profile-toggler" role="button" data-dropdown="toggler">
+                  <div class="user-bio user-bio_size_md topbar__user-bio"><img class="user-bio__pic"
+                      src="assets/media/temp/user.jpg" alt=""></div><svg class="topbar__profile-icon">
+                    <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                  </svg>
+                </div>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#profile"></use>
+                      </svg><span class="menu-tools__link-title">My Profile</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#logout"></use>
+                      </svg><span class="menu-tools__link-title">Log Out </span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="breadcrumbs breadcrumbs_theme_faded p-dashboard__breadcrumbs">
+          <ul class="breadcrumbs__list" itemprop="http://schema.org/breadcrumb" itemscope=""
+            itemtype="http://schema.org/BreadcrumbList">
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope="itemscope"
+              itemtype="https://schema.org/ListItem"><span class="breadcrumbs__link" title="" itemprop="item"><span
+                  class="breadcrumbs__title" itemprop="name">Inventory</span></span>
+              <meta itemprop="position" content="2">
+            </li>
+          </ul>
+        </div>
+        <div class="filter p-dashboard__filter">
+          <div class="filter__row">
+            <h1 class="page-title filter__title">Inventory</h1><label
+              class="field field_has-icon-before filter__search"><input class="field__input" type="text"
+                placeholder="search for a product, flower, etc"><span class="field__icon field__icon_type_symbol"><svg
+                  class="field__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#search"></use>
+                </svg></span></label>
+            <div class="filter__categories">
+              <div class="filter-category filter__category"><input class="filter-category__input" type="checkbox"
+                  id="fff-ccc-1" name="buds"><label class="filter-category__label" for="fff-ccc-1"><span
+                    class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg">
+                        <use xlink:href="assets/sprites/icons.svg#categoryBuds"></use>
+                      </svg></span><span class="filter-category__title">Buds</span></span></label></div>
+              <div class="filter-category filter__category"><input class="filter-category__input" type="checkbox"
+                  id="fff-ccc-2" name="edible"><label class="filter-category__label" for="fff-ccc-2"><span
+                    class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg">
+                        <use xlink:href="assets/sprites/icons.svg#categoryEdible"></use>
+                      </svg></span><span class="filter-category__title">Edible</span></span></label></div>
+              <div class="filter-category filter__category"><input class="filter-category__input" type="checkbox"
+                  id="fff-ccc-3" name="concentrate"><label class="filter-category__label" for="fff-ccc-3"><span
+                    class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg">
+                        <use xlink:href="assets/sprites/icons.svg#categoryConcentrate"></use>
+                      </svg></span><span class="filter-category__title">Concentrate</span></span></label></div>
+            </div>
+            <div class="filter__views"><a class="button view-toggler _active filter__view-toggler" href="#"><span
+                  class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                      class="button__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#listView"></use>
+                    </svg></span></span></a><a class="button view-toggler filter__view-toggler" href="#"><span
+                  class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                      class="button__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#cardView"></use>
+                    </svg></span></span></a></div>
+          </div>
+          <div class="filter__row">
+            <div class="filter__ranges">
+              <div class="range filter__range" data-component="range"
+                data-options="{&quot;start&quot;:[10,8000],&quot;min&quot;:5,&quot;max&quot;:10000,&quot;suffix&quot;:&quot; $&quot;}">
+                <div class="range__title">Price Range</div>
+                <div class="range__slider-wrapper">
+                  <div class="range__slider" data-node="slider"></div>
+                </div>
+                <div class="range__fields">
+                  <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                      data-node="input" data-type="from"></div>
+                  <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                      data-node="input" data-type="to"></div>
+                </div>
+              </div>
+              <div class="range filter__range" data-component="range"
+                data-options="{&quot;start&quot;:[1,65],&quot;min&quot;:1,&quot;max&quot;:100,&quot;suffix&quot;:&quot; %&quot;}">
+                <div class="range__title">ТНС, %</div>
+                <div class="range__slider-wrapper">
+                  <div class="range__slider" data-node="slider"></div>
+                </div>
+                <div class="range__fields">
+                  <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                      data-node="input" data-type="from"></div>
+                  <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                      data-node="input" data-type="to"></div>
+                </div>
+              </div>
+              <div class="range filter__range" data-component="range"
+                data-options="{&quot;start&quot;:[1,65],&quot;min&quot;:1,&quot;max&quot;:100,&quot;suffix&quot;:&quot; %&quot;}">
+                <div class="range__title">CBD, %</div>
+                <div class="range__slider-wrapper">
+                  <div class="range__slider" data-node="slider"></div>
+                </div>
+                <div class="range__fields">
+                  <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                      data-node="input" data-type="from"></div>
+                  <div class="field field_size_sm range__field"><input class="field__input" type="text"
+                      data-node="input" data-type="to"></div>
+                </div>
+              </div>
+            </div>
+            <div class="filter-nose filter__nose" data-component="filter-nose" data-value="3">
+              <div class="filter-nose__pips" data-node="pips"><label class="filter-nose__pip _active"
+                  data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip _active"
+                  data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip _active"
+                  data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose" data-node="input"
+                    checked><span class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip"
+                  data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip _long"
+                  data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip" data-node="pip"><input
+                    class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip" data-node="pip"><input
+                    class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip" data-node="pip"><input
+                    class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip" data-node="pip"><input
+                    class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label><label class="filter-nose__pip _long"
+                  data-node="pip"><input class="filter-nose__pip-input" type="radio" name="nose" data-node="input"><span
+                    class="filter-nose__pip-rec"></span></label></div>
+              <div class="filter-nose__controls"><button class="filter-nose__control" type="button"
+                  data-node="btn-min">Min</button><button class="filter-nose__control" type="button"
+                  data-node="btn-max">Max</button></div>
+            </div><button class="button filter__advanced-toggler button_theme_special"
+              data-modal-open="modal-filter-advanced"><span class="button__inner"><span
+                  class="button__icon button__icon_type_inline button__icon_pos_before"></span><span
+                  class="button__title">Advanced Filter</span><span
+                  class="button__icon button__icon_type_inline button__icon_pos_after"></span></span></button>
+            <div class="filter__categories">
+              <div class="filter-category filter__category"><input class="filter-category__input" type="checkbox"
+                  id="fff-ccc-4" name="Requests"><label class="filter-category__label" for="fff-ccc-4"><span
+                    class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg">
+                        <use xlink:href="assets/sprites/icons.svg#requests"></use>
+                      </svg></span><span class="filter-category__title">Requests</span></span></label></div>
+              <div class="filter-category filter__category"><input class="filter-category__input" type="checkbox"
+                  id="fff-ccc-5" name="Licenses"><label class="filter-category__label" for="fff-ccc-5"><span
+                    class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg">
+                        <use xlink:href="assets/sprites/icons.svg#license"></use>
+                      </svg></span><span class="filter-category__title">Licenses</span></span></label></div>
+              <div class="filter-category filter__category"><input class="filter-category__input" type="checkbox"
+                  id="fff-ccc-6" name="Sellers"><label class="filter-category__label" for="fff-ccc-6"><span
+                    class="filter-category__inner"><span class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg">
+                        <use xlink:href="assets/sprites/icons.svg#license"></use>
+                      </svg></span><span class="filter-category__title">Sellers</span></span></label></div>
+            </div>
+            <div class="menu-tools filter__sort" data-dropdown="component"><button
+                class="button menu-tools__toggler button_theme_neon" type="button" data-dropdown="toggler"><span
+                  class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                      class="button__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#filter"></use>
+                    </svg></span></span></button>
+              <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                <div class="menu-tools__dropdown-title">Sort by:</div>
+                <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                    </svg><span class="menu-tools__link-title">Date (New first)</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/icons.svg#calendarWeek"></use>
+                    </svg><span class="menu-tools__link-title">Date (Old first)</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#arrowHight"></use>
+                    </svg><span class="menu-tools__link-title">Price (High first)</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#arrowLow"></use>
+                    </svg><span class="menu-tools__link-title">Price (Low first)</span></a><a class="menu-tools__link"
+                    href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#thcHight"></use>
+                    </svg><span class="menu-tools__link-title">Total THC (High first)</span></a><a
+                    class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#thcLow"></use>
+                    </svg><span class="menu-tools__link-title">Total THC (Low first)</span></a><a
+                    class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#cbdHight"></use>
+                    </svg><span class="menu-tools__link-title">Total CBD (High first)</span></a><a
+                    class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                      <use xlink:href="assets/sprites/iconsConst.svg#cbdLow"></use>
+                    </svg><span class="menu-tools__link-title">Total CBD (Low first)</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="filter__row">
+            <div class="props-list filter__props-list" id="filter-props-list">
+              <div class="props-list__inner">
+                <div class="props-list__title">Results</div>
+                <div class="props-list__viewport" data-component="drag-scroll">
+                  <div class="props-list__items" data-node="badges"></div>
+                </div>
+              </div>
+            </div><label class="field filter__price-availability">
+              <div class="field__row"><input class="field__input field__input_hidden" type="checkbox"><span
+                  class="field__checkbox"></span><span class="field__label">No Price Products</span></div>
+            </label>
+          </div>
+        </div>
+        <div class="p-dashboard__inventory">
+          <div class="propsfilter p-dashboard__propsfilter" data-component="propsfilter"
+            data-results-id="filter-props-list">
+            <div class="propsfilter__inner">
+              <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Title group 1"
+                  data-dropdown="toggler"><span class="propsfilter__toggler-title">Title group 1</span><span
+                    class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                    </svg></span></button>
+                <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                    class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg1%%%0"
+                        data-node="option" data-title="Option title 1"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 1</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg1%%%1"
+                        data-node="option" data-title="Option title 2"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 2</span></div>
+                  </label></div>
+              </div>
+              <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Title group 2"
+                  data-dropdown="toggler"><span class="propsfilter__toggler-title">Title group 2</span><span
+                    class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                    </svg></span></button>
+                <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                    class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg2%%%0"
+                        data-node="option" data-title="Option title 1"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 1</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg2%%%1"
+                        data-node="option" data-title="Option title 2"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 2</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg2%%%2"
+                        data-node="option" data-title="Option title 3"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 3</span></div>
+                  </label></div>
+              </div>
+              <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Title group 3"
+                  data-dropdown="toggler"><span class="propsfilter__toggler-title">Title group 3</span><span
+                    class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                    </svg></span></button>
+                <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                    class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg3%%%0"
+                        data-node="option" data-title="Option title 1"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 1</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg3%%%1"
+                        data-node="option" data-title="Option title 2"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 2</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg3%%%2"
+                        data-node="option" data-title="Option title 3"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 3</span></div>
+                  </label></div>
+              </div>
+              <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Title group 4"
+                  data-dropdown="toggler"><span class="propsfilter__toggler-title">Title group 4</span><span
+                    class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                    </svg></span></button>
+                <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                    class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg4%%%0"
+                        data-node="option" data-title="Option title 1"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 1</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg4%%%1"
+                        data-node="option" data-title="Option title 2"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 2</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg4%%%2"
+                        data-node="option" data-title="Option title 3"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 3</span></div>
+                  </label></div>
+              </div>
+              <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Title group 5"
+                  data-dropdown="toggler"><span class="propsfilter__toggler-title">Title group 5</span><span
+                    class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                    </svg></span></button>
+                <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                    class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg5%%%0"
+                        data-node="option" data-title="Option title 1"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 1</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg5%%%1"
+                        data-node="option" data-title="Option title 2"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 2</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg5%%%2"
+                        data-node="option" data-title="Option title 3"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 3</span></div>
+                  </label></div>
+              </div>
+              <div class="propsfilter__group" data-dropdown="component" data-visibility="shown"
+                data-outside-handler="prevent"><button class="propsfilter__toggler" type="button" title="Title group 6"
+                  data-dropdown="toggler"><span class="propsfilter__toggler-title">Title group 6</span><span
+                    class="propsfilter__toggler-icon"><svg class="propsfilter__toggler-svg" aria-hidden="true">
+                      <use xlink:href="assets/sprites/icons.svg#arrowDown"></use>
+                    </svg></span></button>
+                <div class="dropdown propsfilter__dropdown" data-dropdown="dropdown"><label
+                    class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg6%%%0"
+                        data-node="option" data-title="Option title 1"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 1</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg6%%%1"
+                        data-node="option" data-title="Option title 2"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 2</span></div>
+                  </label><label class="field propsfilter__option">
+                    <div class="field__row"><input class="field__input field__input_hidden" type="checkbox" id="gg6%%%2"
+                        data-node="option" data-title="Option title 3"><span class="field__checkbox"></span><span
+                        class="field__label">Option title 3</span></div>
+                  </label></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-list p-dashboard__product-list">
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <picture class="product-card__pic">
+                <source srcset="assets/media/temp/product-card.webp"><img class="product-card__img"
+                  src="assets/media/temp/product-card.jpg" alt="" loading="lazy" decoding="async" width="226"
+                  height="212">
+              </picture>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <div class="product-card__statuses">
+                    <div class="product-card__status product-card__status_hidden"><img class="product-card__status-icon"
+                        src="assets/media/productCard/hidden.svg" alt="" loading="lazy" decoding="async"
+                        aria-hidden="true"><span class="product-card__status-title">Hidden for Sale </span></div>
+                  </div>
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <picture class="product-card__pic">
+                <source srcset="assets/media/temp/product-card.webp"><img class="product-card__img"
+                  src="assets/media/temp/product-card.jpg" alt="" loading="lazy" decoding="async" width="226"
+                  height="212">
+              </picture>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <picture class="product-card__pic">
+                <source srcset="assets/media/temp/product-card.webp"><img class="product-card__img"
+                  src="assets/media/temp/product-card.jpg" alt="" loading="lazy" decoding="async" width="226"
+                  height="212">
+              </picture>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <div class="product-card__statuses">
+                    <div class="product-card__status product-card__status_hidden"><img class="product-card__status-icon"
+                        src="assets/media/productCard/hidden.svg" alt="" loading="lazy" decoding="async"
+                        aria-hidden="true"><span class="product-card__status-title">Hidden for Sale </span></div>
+                  </div>
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <picture class="product-card__pic">
+                <source srcset="assets/media/temp/product-card.webp"><img class="product-card__img"
+                  src="assets/media/temp/product-card.jpg" alt="" loading="lazy" decoding="async" width="226"
+                  height="212">
+              </picture>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <picture class="product-card__pic">
+                <source srcset="assets/media/temp/product-card.webp"><img class="product-card__img"
+                  src="assets/media/temp/product-card.jpg" alt="" loading="lazy" decoding="async" width="226"
+                  height="212">
+              </picture>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <div class="product-card__statuses">
+                    <div class="product-card__status product-card__status_hidden"><img class="product-card__status-icon"
+                        src="assets/media/productCard/hidden.svg" alt="" loading="lazy" decoding="async"
+                        aria-hidden="true"><span class="product-card__status-title">Hidden for Sale </span></div>
+                  </div>
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <div class="product-card__pic">
+                <div class="product-card__pic-icon"></div>
+              </div>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <div class="product-card__pic">
+                <div class="product-card__pic-icon"></div>
+              </div>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <div class="product-card__statuses">
+                    <div class="product-card__status product-card__status_hidden"><img class="product-card__status-icon"
+                        src="assets/media/productCard/hidden.svg" alt="" loading="lazy" decoding="async"
+                        aria-hidden="true"><span class="product-card__status-title">Hidden for Sale </span></div>
+                  </div>
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <div class="product-card__pic">
+                <div class="product-card__pic-icon"></div>
+              </div>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <div class="product-card__pic">
+                <div class="product-card__pic-icon"></div>
+              </div>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <div class="product-card__statuses">
+                    <div class="product-card__status product-card__status_hidden"><img class="product-card__status-icon"
+                        src="assets/media/productCard/hidden.svg" alt="" loading="lazy" decoding="async"
+                        aria-hidden="true"><span class="product-card__status-title">Hidden for Sale </span></div>
+                  </div>
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="product-card product-list__item">
+              <div class="product-card__labels">
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/leaf.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Quality</span></div>
+                </div>
+                <div class="product-card__label">
+                  <div class="product-card__label-inner"><img class="product-card__label-icon"
+                      src="assets/media/productCard/energy.svg" alt="" loading="lazy" decoding="async"
+                      aria-hidden="true"><span class="product-card__label-title">Highest Response</span></div>
+                </div>
+              </div>
+              <div class="menu-tools menu-tools_size_sm product-card__tools" data-dropdown="component"><button
+                  class="button menu-tools__toggler button_theme_gray" type="button" data-dropdown="toggler"><span
+                    class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                        class="button__icon-svg">
+                        <use xlink:href="assets/sprites/icons.svg#kebab"></use>
+                      </svg></span></span></button>
+                <div class="dropdown menu-tools__dropdown" data-dropdown="dropdown">
+                  <div class="menu-tools__items"><a class="menu-tools__link" href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#eyeInvisible"></use>
+                      </svg><span class="menu-tools__link-title">Hide for Sales</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#share"></use>
+                      </svg><span class="menu-tools__link-title">Share</span></a><a class="menu-tools__link"
+                      href="#"><svg class="menu-tools__link-svg">
+                        <use xlink:href="assets/sprites/icons.svg#edit"></use>
+                      </svg><span class="menu-tools__link-title">Edit</span></a></div>
+                </div>
+              </div>
+              <div class="product-card__pic">
+                <div class="product-card__pic-icon"></div>
+              </div>
+              <div class="product-card__content">
+                <div class="product-card__header">
+                  <h2 class="product-card__title" title="Long Flower Name">Long Flower Name</h2>
+                </div>
+                <div class="product-card__props product-card__props_bordered">
+                  <div class="product-card__prop">
+                    <div
+                      class="product-card__prop-title product-card__prop-title_theme_accent product-card__prop-title_color_accent">
+                      <span class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>Available:</div>
+                    <div class="product-card__prop-body">
+                      <div class="select select_size_sm" data-component="select"><select class="_v-hidden">
+                          <option value="101" data-id="ss0" data-title="101"></option>
+                          <option value="202" data-id="ss1" data-title="202"></option>
+                          <option value="320" data-id="ss2" data-title="320"></option>
+                        </select></div><span class="product-card__unit">lb</span>
+                    </div>
+                  </div>
+                  <div class="product-card__prop">
+                    <div class="product-card__prop-title product-card__prop-title_theme_accent"><span
+                        class="product-card__prop-icon"><svg class="product-card__prop-svg" aria-hidden="true">
+                          <use xlink:href="assets/sprites/icons.svg#pack"></use>
+                        </svg></span>On-hand:</div>
+                    <div class="product-card__prop-body"><span class="product-card__prop-value">320</span><span
+                        class="product-card__unit">lb</span></div>
+                  </div>
+                </div>
+                <div class="product-card__props">
+                  <div class="product-card__prop product-card__prop_view_row product-card__prop_order_reversed"><span
+                      class="product-card__prop-title">1 / lb</span>
+                    <div class="product-card__prop-body"><span
+                        class="product-card__unit product-card__unit_pos_left">$</span><label
+                        class="field field_size_sm product-card__prop-field"><input class="field__input" type="text"
+                          value="50" data-mask="number"></label></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="modal modal_size_xs modal-filter-advanced" id="modal-filter-advanced">
+      <div class="modal__overlay" tabindex="-1" data-modal-close>
+        <div class="modal__content"><button class="button modal__close" type="button" aria-label="close modal"
+            data-modal-close><span class="button__inner"><span class="button__icon button__icon_type_symbol"><svg
+                  class="button__icon-svg">
+                  <use xlink:href="assets/sprites/icons.svg#cancel"></use>
+                </svg></span></span></button>
+          <h2 class="modal__title"> <svg class="modal__title-svg">
+              <use xlink:href="assets/sprites/iconsConst.svg#filter"></use>
+            </svg>Advanced Filter</h2><a class="modal__link" href="#">My recent request</a>
+          <form class="filter-advanced" data-tabs="component">
+            <div class="filter-advanced__categories"><button
+                class="filter-category _active filter-category_size_s filter-advanced__category" type="button"
+                data-tabs="tab" data-id="sellers">
+                <div class="filter-category__label"><span class="filter-category__inner"><span
+                      class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg filter-category__svg_dark">
+                        <use xlink:href="assets/sprites/icons.svg#categorySeller"></use>
+                      </svg></span><span class="filter-category__title">Sellers</span></span></div>
+              </button><button class="filter-category filter-category_size_s filter-advanced__category" type="button"
+                data-tabs="tab" data-id="licenses">
+                <div class="filter-category__label"><span class="filter-category__inner"><span
+                      class="filter-category__icon" aria-hidden="true"><svg
+                        class="filter-category__svg filter-category__svg_dark">
+                        <use xlink:href="assets/sprites/icons.svg#license"></use>
+                      </svg></span><span class="filter-category__title">Licenses</span></span></div>
+              </button></div>
+            <div class="filter-advanced__lists">
+              <div class="filter-advanced__list" data-tabs="tab-stage" data-id="licenses"><label
+                  class="field field_theme_neon-gray field_has-icon-before filter-advanced__search"><input
+                    class="field__input" type="text"><span class="field__substrate"></span><span
+                    class="field__icon field__icon_type_symbol"><svg class="field__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#search"></use>
+                    </svg></span></label>
+                <div class="filter-advanced__stack"><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a><a class="filter-advanced__option-link" href="#"><img
+                      class="filter-advanced__icon" src="assets/media/userTypes/cv.svg" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">LicenseLicense</span><span
+                      class="filter-advanced__count">(2)</span></a></div>
+              </div>
+              <div class="filter-advanced__list _shown" data-tabs="tab-stage" data-id="sellers"><label
+                  class="field field_theme_neon-gray field_has-icon-before filter-advanced__search"><input
+                    class="field__input" type="text"><span class="field__substrate"></span><span
+                    class="field__icon field__icon_type_symbol"><svg class="field__icon-svg">
+                      <use xlink:href="assets/sprites/icons.svg#search"></use>
+                    </svg></span></label>
+                <div class="filter-advanced__tile"><label class="filter-advanced__option" for="xxasdasdoooof0">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof0" id="xxasdasdoooof0"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof1">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof1" id="xxasdasdoooof1"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof2">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof2" id="xxasdasdoooof2"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof3">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof3" id="xxasdasdoooof3"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof4">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof4" id="xxasdasdoooof4"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof5">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof5" id="xxasdasdoooof5"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof6">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof6" id="xxasdasdoooof6"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof7">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof7" id="xxasdasdoooof7"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof8">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof8" id="xxasdasdoooof8"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof9">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof9" id="xxasdasdoooof9"><span class="field__checkbox"></span>
+                    </div><img class="filter-advanced__pic" src="assets/media/temp/company.png" alt=""
+                      aria-hidden="true"><span class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof10">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof10" id="xxasdasdoooof10"><span
+                        class="field__checkbox"></span></div><img class="filter-advanced__pic"
+                      src="assets/media/temp/company.png" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof11">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof11" id="xxasdasdoooof11"><span
+                        class="field__checkbox"></span></div><img class="filter-advanced__pic"
+                      src="assets/media/temp/company.png" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof12">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof12" id="xxasdasdoooof12"><span
+                        class="field__checkbox"></span></div><img class="filter-advanced__pic"
+                      src="assets/media/temp/company.png" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof13">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof13" id="xxasdasdoooof13"><span
+                        class="field__checkbox"></span></div><img class="filter-advanced__pic"
+                      src="assets/media/temp/company.png" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label><label class="filter-advanced__option" for="xxasdasdoooof14">
+                    <div class="field filter-advanced__checkbox"><input class="field__input field__input_hidden"
+                        type="checkbox" name="xxasdasdoooof14" id="xxasdasdoooof14"><span
+                        class="field__checkbox"></span></div><img class="filter-advanced__pic"
+                      src="assets/media/temp/company.png" alt="" aria-hidden="true"><span
+                      class="filter-advanced__prop-title">SellerSellersghjrkeggfdgrgdg</span>
+                  </label></div>
+              </div>
+            </div>
+            <div class="filter-advanced__controls"><button class="filter-advanced__reset" type="reset">Reset
+              </button><input class="filter-advanced__send" type="submit" value="Apply"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
